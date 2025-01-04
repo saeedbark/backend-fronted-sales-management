@@ -1,5 +1,5 @@
 class UserLoginModel{
-  bool? status;
+   bool? status;
   String? message;
    Data? data;
   UserLoginModel.fromJson(Map<String,dynamic> json){
