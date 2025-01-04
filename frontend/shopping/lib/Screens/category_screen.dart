@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping/layout/cubit/cubit.dart';
+import 'package:shopping/layout/cubit/state.dart';
+import 'package:shopping/models/category_model.dart';
+
+class CategoryScreen extends StatelessWidget {
+  const CategoryScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<MyshopCubit, MyshopState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        var cubit = MyshopCubit.get(context).categoryModel!.data!.data;
+        return ListView.separated(
+            itemBuilder: (context, index) => builderCategoryItem(cubit[index]),
+            separatorBuilder: (context, index) => const Divider(
+                // thickness: 1,
+                // height: 1,
+                ),
+            itemCount: cubit.length);
+      },
+    );
+  }
+
+  Widget builderCategoryItem(DataCategory model) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Image(
+            image: NetworkImage(model.image!),
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            model.name!,
+            style: const TextStyle(fontSize: 24),
+          ),
+          const Spacer(),
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.arrow_forward_ios)),
+        ],
+      ),
+    );
+  }
+}
+
+Widget builderCategory(DataCategory model, context) {
+  return Stack(
+    alignment: Alignment.bottomCenter,
+    children: [
+      Image(
+        image: NetworkImage(model.image!),
+        height: 100,
+        width: 100,
+      ),
+      Container(
+        width: 100,
+        color: Colors.black.withOpacity(0.7),
+        child: Text(model.name!,
+            style: const TextStyle(color: Colors.white),
+            textAlign: TextAlign.center),
+      ),
+    ],
+  );
+}
