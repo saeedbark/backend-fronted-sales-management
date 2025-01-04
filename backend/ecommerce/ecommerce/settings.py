@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-@q1q*3(&wa82-d^%#9se0dvysa7p2w4lo6b4_7xu!6q$7%c5q@
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'api.User'
+
 
 
 # Application definition
@@ -37,9 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', 
-    'rest_framework',
-    'api',
+    'api.apps.ApiConfig',  # Add your app here
+    'rest_framework',  # Add Django REST framework
+    'rest_framework_simplejwt',  # Add JWT authentication
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # Allow unauthenticated access globally
+        'rest_framework.permissions.AllowAny',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
