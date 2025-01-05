@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from .models import Banner, Product
+
 
 User = get_user_model()
 
@@ -18,7 +20,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             phone=validated_data.get('phone'),
             password=validated_data['password'],
-            image=validated_data.get('image', 'default_image_url')
+            image=validated_data.get('image', 'null')
         )
         return user
 
@@ -39,3 +41,15 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Remove unnecessary fields from the response
         data.pop('refresh', None)
         return data
+
+
+
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
+        fields = ['id', 'image']
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'image', 'price', 'old_price', 'discount', 'in_favorites']

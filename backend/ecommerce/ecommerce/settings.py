@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-@q1q*3(&wa82-d^%#9se0dvysa7p2w4lo6b4_7xu!6q$7%c5q@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',  # For localhost
+    'localhost',  # For localhost
+    '172.10.38.153',  # Your machine's IP address
+]
 AUTH_USER_MODEL = 'api.User'
 
 
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',  # Add your app here
     'rest_framework',  # Add Django REST framework
     'rest_framework_simplejwt',  # Add JWT authentication
+    'corsheaders',
+
 ]
 
 REST_FRAMEWORK = {
@@ -54,6 +60,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
