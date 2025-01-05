@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="63c42f12-1a48-41d6-841e-1a3f25e70865" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ecommerce/ecommerce/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ecommerce/ecommerce/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/.metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/kotlin/com/example/shopping/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/assets/images/onbording_1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/assets/images/onbording_2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/assets/images/onbording_3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/devtools_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Flutter/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Flutter/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/ios/RunnerTests/RunnerTests.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/category_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/favorite_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/login/cubit/cubit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/login/cubit/state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/login/loginScreen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/onbordingScreen/onbording_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/products.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/register/cubit/cubit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/register/cubit/state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/register/register_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/search/cubit/cubit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/search/cubit/state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/search/search.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/Screens/setting_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/componets/componets.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/layout/cubit/cubit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/layout/cubit/state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/layout/layout.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/category_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/changeFavorit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/favorite_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/home_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/login_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/onbording_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/search_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/models/update_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/network/dio_api/dioApi.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/network/shared_preference/shared_preference.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/style/bloc_observ.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/style/color.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/widget/default_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/widget/default_text_form.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/widget/navigator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/widget/text.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/lib/widget/widget_onbording.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/flutter/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/flutter/generated_plugin_registrant.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/flutter/generated_plugins.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/main.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/my_application.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/linux/my_application.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Flutter/Flutter-Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Flutter/Flutter-Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Base.lproj/MainMenu.xib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Configs/AppInfo.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Configs/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Configs/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Configs/Warnings.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/DebugProfile.entitlements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/MainFlutterWindow.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/Runner/Release.entitlements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/macos/RunnerTests/RunnerTests.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/test/widget_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/icons/Icon-maskable-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/icons/Icon-maskable-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/web/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/flutter/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/flutter/generated_plugin_registrant.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/flutter/generated_plugins.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/Runner.rc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/flutter_window.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/flutter_window.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/resource.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/resources/app_icon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/runner.exe.manifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/utils.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/win32_window.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/shopping/windows/runner/win32_window.h" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2rBIiPrHrYvxGIkAo5oFFDtCR1q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/backend-fronted-sales-management",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63c42f12-1a48-41d6-841e-1a3f25e70865" name="Changes" comment="" />
+      <created>1736026168073</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736026168073</updated>
+    </task>
+    <servers />
+  </component>
+</project>
