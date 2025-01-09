@@ -1,5 +1,5 @@
 import 'package:e_commerce/network/app_exceptions.dart';
-import 'package:e_commerce/src/register/register_service.dart';
+import 'package:e_commerce/src/auth/register/register_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +11,11 @@ class RegisterController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController(); // Add phone field
+
+    final formKey = GlobalKey<FormState>();
+      bool ischeckBox = false;
+
+
 
 
   Future<void> register(String name, String email, String password, String phone) async {
@@ -24,4 +29,20 @@ class RegisterController extends GetxController {
       isLoading.value = false;
     }
   }
+
+
+      bool isVisibilty = false;
+
+
+     void visibilty() {
+    isVisibilty = !isVisibilty;
+    update();
+  }
+
+  void checkBox() {
+    ischeckBox = !ischeckBox;
+    update();
+  }
+
+
 }

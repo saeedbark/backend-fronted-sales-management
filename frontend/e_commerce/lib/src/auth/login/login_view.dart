@@ -1,8 +1,6 @@
-
-
 import 'package:e_commerce/constent/my_string.dart';
 import 'package:e_commerce/routes/app_routes.dart';
-import 'package:e_commerce/src/login/login_controller.dart';
+import 'package:e_commerce/src/auth/login/login_controller.dart';
 import 'package:e_commerce/src/widget/auth/auth_button.dart';
 import 'package:e_commerce/src/widget/auth/auth_text_field_form.dart';
 import 'package:e_commerce/src/widget/auth/container_under.dart';
@@ -10,24 +8,24 @@ import 'package:e_commerce/src/widget/text_util.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
- const LoginScreen({super.key});
-
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-  final controller = Get.put(LoginController());
+    final controller = Get.put(LoginController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? blackColor:Colors.white ,
+          backgroundColor: Get.isDarkMode ? blackColor : Colors.white,
           elevation: 0,
         ),
         body: SingleChildScrollView(
           child: Form(
-            key:controller. formKey,
+            key: controller.formKey,
             child: Column(
               children: [
                 Container(
@@ -41,20 +39,19 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           children: [
                             const TextUtils(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w500,
-                                text: 'LOG',
-                                color: Colors.deepOrange,
-                                underline: TextDecoration.none,),
-                            const SizedBox(
-                              width: 5
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              text: 'LOG',
+                              color: Colors.deepOrange,
+                              underline: TextDecoration.none,
                             ),
+                            const SizedBox(width: 5),
                             TextUtils(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 text: 'IN',
                                 color:
-                                    Get.isDarkMode ?  Colors.white : blackColor ,
+                                    Get.isDarkMode ? Colors.white : blackColor,
                                 underline: TextDecoration.none)
                           ],
                         ),
@@ -62,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                           height: 50,
                         ),
                         authTextFromField(
-                          controller:controller. emailController,
+                          controller: controller.emailController,
                           obscureText: false,
                           cursorColor: Colors.black,
                           fillColor: Colors.grey.shade200,
@@ -93,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         GetBuilder<LoginController>(builder: (_) {
                           return authTextFromField(
-                            controller:controller. passwordController,
+                            controller: controller.passwordController,
                             obscureText: controller.isVisibilty ? false : true,
                             cursorColor: Colors.black,
                             fillColor: Colors.grey.shade200,
@@ -136,15 +133,15 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.bottomRight,
                           child: TextButton(
                             onPressed: () {
-                            //  Get.toNamed(Routes.forgetScreen);
+                              //  Get.toNamed(Routes.forgetScreen);
                             },
                             child: TextUtils(
                                 fontSize: 20,
                                 fontWeight: FontWeight.normal,
                                 text: 'Forget Password? ',
                                 color: Get.isDarkMode
-                                    ?
-                                    Colors.white :Colors.black,
+                                    ? Colors.white
+                                    : Colors.black,
                                 underline: TextDecoration.none),
                           ),
                         ),
@@ -167,7 +164,7 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 22,
                             fontWeight: FontWeight.normal,
                             text: 'OR',
-                            color: Get.isDarkMode ?   Colors.white : Colors.black,
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
                             underline: TextDecoration.none),
                         const SizedBox(
                           height: 10,
@@ -175,18 +172,18 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                           GetBuilder<LoginController>(builder: (_){
-                             return  InkWell(
-                               onTap: (){
-                                 //controller.googleSignUpApp();
-                               },
-                               child: Image.asset(
-                                 'assets/images/google1.png',
-                                 height: 44,
-                                 width: 44,
-                               ),
-                             );
-                           })
+                            GetBuilder<LoginController>(builder: (_) {
+                              return InkWell(
+                                onTap: () {
+                                  //controller.googleSignUpApp();
+                                },
+                                child: Image.asset(
+                                  'assets/images/google1.png',
+                                  height: 44,
+                                  width: 44,
+                                ),
+                              );
+                            })
                           ],
                         ),
                       ],
@@ -194,11 +191,10 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 ContainerUnder(
-                    text: "Don't have an Account?",
-                    textType: 'Sign up',
-                    onPress: () {
-                      Get.offNamed(AppRoutes.register);
-                    }),
+                  text: "Don't have an Account?",
+                  textType: 'Sign up',
+                  onPress: () => context.go(AppRoutes.register),
+                ),
               ],
             ),
           ),

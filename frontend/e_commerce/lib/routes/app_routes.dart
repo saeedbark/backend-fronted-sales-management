@@ -1,7 +1,7 @@
 import 'package:e_commerce/shared_pref/shared_preferences.dart';
 import 'package:e_commerce/src/products/products_view.dart';
-import 'package:e_commerce/src/login/login_view.dart';
-import 'package:e_commerce/src/register/register_view.dart';
+import 'package:e_commerce/src/auth/login/login_view.dart';
+import 'package:e_commerce/src/auth/register/register_view.dart';
 import 'package:go_router/go_router.dart';
 
 
@@ -15,8 +15,14 @@ final GoRouter router = GoRouter(
   
   initialLocation:AppRoutes.login ,
   redirect: (context, state) async{
-    final  token = await SharedPreferencesHelper.getString('token');
-   return token != null && token != '' ? AppRoutes.home : AppRoutes.login;
+    final token = await SharedPreferencesHelper.getString('token');
+    final isAuthenticated = token != null && token.isNotEmpty;
+
+    if (!isAuthenticated && state.location != AppRoutes.register) {
+      return AppRoutes.login;
+    }
+
+    return null; 
   },
   routes: [
 
