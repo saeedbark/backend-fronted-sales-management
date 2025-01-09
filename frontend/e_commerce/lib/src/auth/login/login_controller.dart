@@ -1,8 +1,8 @@
 import 'package:e_commerce/network/app_exceptions.dart';
 import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/shared_pref/shared_preferences.dart';
-import 'package:e_commerce/src/login/login_model.dart';
-import 'package:e_commerce/src/login/login_service.dart';
+import 'package:e_commerce/src/auth/login/login_model.dart';
+import 'package:e_commerce/src/auth/login/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';

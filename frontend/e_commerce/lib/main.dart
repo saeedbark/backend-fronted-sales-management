@@ -1,11 +1,10 @@
 import 'package:e_commerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 
-void main() async {
+void main()  {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,8 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+   
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
