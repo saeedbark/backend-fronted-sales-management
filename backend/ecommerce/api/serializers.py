@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import Banner, Product
+from .models import Product,Favorite,Category
 
 
 User = get_user_model()
@@ -44,12 +44,30 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 
-class BannerSerializer(serializers.ModelSerializer):
+
+        
+        
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Banner
-        fields = ['id', 'image']
+        model = Category
+        fields = '__all__'        
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'image', 'price', 'old_price', 'discount', 'in_favorites']
+        fields = ['id', 'name', 'image', 'price', 'old_price', 'discount', 'is_favorite','category_id']
+
+
+
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)  # Show username
+    product = ProductSerializer(read_only=True)
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), source='product', write_only=True
+    )
+
+    class Meta:
+        model = Favorite
+        fields = ['id', 'user', 'product', 'product_id', 'created_at']
