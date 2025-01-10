@@ -1,14 +1,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from rest_framework import status
-from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer,BannerSerializer, ProductSerializer
+from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 
 
 from rest_framework.permissions import AllowAny
 
-from .models import Banner, Product
+from .models import Product,Category
 
 
 # Register View
@@ -46,19 +47,21 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 
-class HomeDataView(APIView):
+class Products(APIView):
+    print('---------home-------------')
     permission_classes = [IsAuthenticated]  # Require authentication
 
     def get(self, request):
+        print('request',request)
         # Get the authenticated user from the token
         user = request.user
+        
+        print('user',user)
 
-        # Fetch banners and products (could be filtered by user if needed)
-        banners = Banner.objects.all()
+        # Fetch  products (could be filtered by user if needed)
         products = Product.objects.all()
 
         # Serialize the data
-        banner_serializer = BannerSerializer(banners, many=True)
         product_serializer = ProductSerializer(products, many=True)
 
         # Construct the response data
@@ -70,10 +73,36 @@ class HomeDataView(APIView):
                 "email": user.email
             },
             "data": {
-                "banners": banner_serializer.data,
                 "products": product_serializer.data
             }
         }
 
         return Response(home_data)
 
+
+class Categories(APIView):
+    print('---------categroy-------------')
+    permission_classes = [IsAuthenticated]  # Require authentication
+
+    def get(self, request):
+        # Get the authenticated user from the token
+        user = request.user
+        category = Category.objects.all()
+
+        # Serialize the data
+        cateory_serializer = CategorySerializer(category, many=True)
+
+        # Construct the response data
+        home_data = {
+            "status": True,
+            "user": {
+                "id": user.id,
+                "name": user.username,
+                "email": user.email
+            },
+            "data": {
+                "category": cateory_serializer.data
+            }
+        }
+
+        return Response(home_data)
