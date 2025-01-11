@@ -7,14 +7,16 @@ import 'package:get/get.dart';
 
 class LayoutController extends GetxController {
   RxInt currentIndex = 0.obs;
+
   final tabs =  [
-    HomeScreen(),
-    CategoryScreen(),
-    FavoritesScreen(),
-    SettingScreen(),
+    const ProductsSecreen(),
+  const  CategoryScreen(),
+   const FavoritesScreen(),
+   const SettingScreen(),
   ].obs;
+
   final title = [
-    'Saeed Shop',
+    'Products',
     'Categories',
     'Favorites',
     'Setting',
