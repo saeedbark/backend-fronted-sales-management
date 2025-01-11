@@ -5,15 +5,12 @@ import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart' hide Badge;
 
-
-
 class MainScreen extends StatelessWidget {
- const MainScreen({super.key});
-
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-  final controller = Get.put(LayoutController());
+    final controller = Get.put(LayoutController());
     return SafeArea(
       child: Obx(
         () {
@@ -27,22 +24,19 @@ class MainScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 10.0),
                   child: badge.Badge(
                     position: BadgePosition.topEnd(top: 0, end: 3),
-          
-                    badgeContent:  Text(
-                     //cartController.quantity().toString(),
-                     '0',
+                    badgeContent: Text(
+                      //cartController.quantity().toString(),
+                      '0',
                       style: const TextStyle(color: Colors.white),
                     ),
                     child: IconButton(
                       onPressed: () {
-                       // Get.toNamed(Routes.cartScreen);
+                        // Get.toNamed(Routes.cartScreen);
                       },
                       icon: const Icon(Icons.shopping_cart),
                     ),
                   ),
                 ),
-
-             
               ],
               title: Text(controller.title[controller.currentIndex.value]),
               centerTitle: true,
@@ -58,8 +52,10 @@ class MainScreen extends StatelessWidget {
                     Icons.home,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.home,
-                      color: Get.isDarkMode ? Colors.white : blackColor,),
+                  icon: Icon(
+                    Icons.home,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Products',
                 ),
                 BottomNavigationBarItem(
@@ -67,8 +63,10 @@ class MainScreen extends StatelessWidget {
                     Icons.category,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.category,
-                      color: Get.isDarkMode ? Colors.white : blackColor,),
+                  icon: Icon(
+                    Icons.category,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Products',
                 ),
                 BottomNavigationBarItem(
@@ -76,8 +74,10 @@ class MainScreen extends StatelessWidget {
                     Icons.favorite,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.favorite,
-                      color: Get.isDarkMode ? Colors.white : blackColor,),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Favorite',
                 ),
                 BottomNavigationBarItem(
@@ -85,8 +85,10 @@ class MainScreen extends StatelessWidget {
                     Icons.settings,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.settings,
-                      color: Get.isDarkMode ? Colors.white : blackColor,),
+                  icon: Icon(
+                    Icons.settings,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Setting',
                 ),
               ],
