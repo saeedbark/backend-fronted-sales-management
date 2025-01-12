@@ -1,7 +1,10 @@
-import 'package:e_commerce/src/category/category_controller.dart';
+import 'package:e_commerce/routes/app_routes.dart';
+import 'package:e_commerce/src/categories/categories_controller.dart';
+import 'package:e_commerce/src/products_category/products_view.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key});
@@ -22,11 +25,13 @@ class CategoryWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    // controller.getCategoryIndex(index);
-                    // Get.to(() => CategoryItem());
+                   context.push(AppRoutes.prouductsCategory);
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => ProductsCategoryView()));
                   },
+                 
                   child: Container(
                     height: 200,
+                  
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),

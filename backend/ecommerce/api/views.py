@@ -118,7 +118,7 @@ class ProductsByCategory(APIView):
         user = request.user
         
         print('user',user)
-
+ 
         # Fetch  products (could be filtered by user if needed)
         products = Product.objects.all().filter(category=pk)
         

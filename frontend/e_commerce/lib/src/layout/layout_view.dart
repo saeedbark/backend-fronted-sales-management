@@ -5,8 +5,8 @@ import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart' hide Badge;
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,10 @@ class MainScreen extends StatelessWidget {
                       onPressed: () {
                         // Get.toNamed(Routes.cartScreen);
                       },
-                      icon: const Icon(Icons.shopping_cart),
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -67,7 +70,7 @@ class MainScreen extends StatelessWidget {
                     Icons.category,
                     color: Get.isDarkMode ? Colors.white : blackColor,
                   ),
-                  label: 'Products',
+                  label: 'Categories',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(

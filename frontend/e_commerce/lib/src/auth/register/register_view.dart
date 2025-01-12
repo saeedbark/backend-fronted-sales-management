@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(RegisterController());
