@@ -1,52 +1,61 @@
 import 'package:e_commerce/shared_pref/shared_preferences.dart';
+import 'package:e_commerce/src/layout/layout_view.dart';
 import 'package:e_commerce/src/products/products_view.dart';
 import 'package:e_commerce/src/auth/login/login_view.dart';
 import 'package:e_commerce/src/auth/register/register_view.dart';
+import 'package:e_commerce/src/products_category/products_view.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 
 class AppRoutes {
   static const String login = '/login';
   static const String register = '/register';
-  static const String home = '/home';
+  static const String main = '/main';
+  static const String product = '/products';
+  static const String prouductsCategory = '/prouductsCategory';
+
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
+
+  static final GoRouter router = GoRouter(
+    navigatorKey: navigatorKey,
+    initialLocation: AppRoutes.main,
+
+    redirect: (context, state) async {
+      final token = await SharedPreferencesHelper.getString('token');
+      final isAuthenticated = token != null && token.isNotEmpty;
+
+      if (!isAuthenticated) {
+        return AppRoutes.login;
+      }
+
+      return null;
+    },
+    routes: [
+    
+      GoRoute(
+        path: AppRoutes.login,
+        builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: AppRoutes.main,
+        builder: (context, state) => const MainView(),
+      ),
+      GoRoute(
+        path: AppRoutes.register,
+        builder: (context, state) => const RegisterView(),
+      ),
+      GoRoute(
+        path: AppRoutes.product,
+        builder: (context, state) => const ProductsView(),
+      ),
+      GoRoute(
+        path: AppRoutes.prouductsCategory,
+        builder: (context, state) => const ProductsCategoryView(),
+      ),
+    ],
+  );
 }
 
-final GoRouter router = GoRouter(
-  
-  initialLocation:AppRoutes.login ,
-  redirect: (context, state) async{
-    final token = await SharedPreferencesHelper.getString('token');
-    final isAuthenticated = token != null && token.isNotEmpty;
 
-    if (!isAuthenticated && state.location != AppRoutes.register) {
-      return AppRoutes.login;
-    }
-
-    return null; 
-  },
-  routes: [
-
-    GoRoute(
-      path: '/',
-      redirect: (context, state) => AppRoutes.login,
-    ),
-    GoRoute(
-      path: AppRoutes.login,
-      builder: (context, state) => const LoginScreen(),
-    ),
-    GoRoute(
-      path: AppRoutes.register,
-      builder: (context, state) => const RegisterScreen(),
-    ),
-    GoRoute(
-      path: AppRoutes.home,
-      builder: (context, state) => const HomeScreen(),
-    ),
-  ],
-);
-
-
-Future<String?> isToken()async {
-  final String? token = await SharedPreferencesHelper.getString('token');
-  return token;
-}

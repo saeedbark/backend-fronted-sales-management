@@ -5,16 +5,12 @@ import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart' hide Badge;
 
-
-
-class MainScreen extends StatelessWidget {
-  MainScreen({Key? key}) : super(key: key);
-
-  final controller = Get.find<LayoutController>();
-  //final cartController = Get.find<CartController>();
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LayoutController());
     return SafeArea(
       child: Obx(
         () {
@@ -24,30 +20,26 @@ class MainScreen extends StatelessWidget {
               elevation: 0,
               leading: Container(),
               actions: [
-              Obx(() {
-                return   Padding(
+                Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: badge.Badge(
-                  //  badgeColor: Colors.red,
                     position: BadgePosition.topEnd(top: 0, end: 3),
-                   // animationDuration: const Duration(milliseconds: 300),
-                  //  animationType: BadgeAnimationType.slide,
-                    badgeContent:  Text(
-                     //cartController.quantity().toString(),
-                     '0',
+                    badgeContent: Text(
+                      //cartController.quantity().toString(),
+                      '0',
                       style: const TextStyle(color: Colors.white),
                     ),
                     child: IconButton(
                       onPressed: () {
-                       // Get.toNamed(Routes.cartScreen);
+                        // Get.toNamed(Routes.cartScreen);
                       },
-                      icon: const Icon(Icons.shopping_cart),
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                );
-
-              }
-              ,),
+                ),
               ],
               title: Text(controller.title[controller.currentIndex.value]),
               centerTitle: true,
@@ -63,26 +55,32 @@ class MainScreen extends StatelessWidget {
                     Icons.home,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.home,
-                      color: Get.isDarkMode ? Colors.white : blackColor),
-                  label: 'Home',
+                  icon: Icon(
+                    Icons.home,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
+                  label: 'Products',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.category,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.category,
-                      color: Get.isDarkMode ? Colors.white : blackColor),
-                  label: 'Products',
+                  icon: Icon(
+                    Icons.category,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
+                  label: 'Categories',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.favorite,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.favorite,
-                      color: Get.isDarkMode ? Colors.white : blackColor),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Favorite',
                 ),
                 BottomNavigationBarItem(
@@ -90,8 +88,10 @@ class MainScreen extends StatelessWidget {
                     Icons.settings,
                     color: Get.isDarkMode ? pinkColor : mainColor,
                   ),
-                  icon: Icon(Icons.settings,
-                      color: Get.isDarkMode ? Colors.white : blackColor),
+                  icon: Icon(
+                    Icons.settings,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                   label: 'Setting',
                 ),
               ],
@@ -101,7 +101,7 @@ class MainScreen extends StatelessWidget {
             ),
             body: IndexedStack(
               index: controller.currentIndex.value,
-              children: controller.tabs.value,
+              children: controller.tabs,
             ),
           );
         },

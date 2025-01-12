@@ -30,7 +30,7 @@ class DioHelper {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2MDgyMjQzLCJpYXQiOjE3MzYwODE5NDMsImp0aSI6ImEyMDM3ZjIzMDcyMjRlMGM5NGVhMzA1MThkZGY2ZGUyIiwidXNlcl9pZCI6Nn0.sCBxRk3VgVzuEMUmKqfsw2teaOjsGpDkSSqQZTFoSic',
+            'Authorization': 'Bearer $token',
           },
         ),
       );

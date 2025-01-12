@@ -6,8 +6,8 @@ import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ProductsView extends StatelessWidget {
+  const ProductsView({super.key});
 
   @override
   Widget build(BuildContext context) {

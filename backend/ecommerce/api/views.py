@@ -101,7 +101,44 @@ class Categories(APIView):
                 "email": user.email
             },
             "data": {
-                "category": cateory_serializer.data
+                "categories": cateory_serializer.data
+            }
+        }
+
+        return Response(home_data)
+
+
+
+class ProductsByCategory(APIView):
+    permission_classes = [IsAuthenticated]  # Require authentication
+    print('---------categroy-------------')
+    def get(self, request,pk):
+        print('request',request)
+        # Get the authenticated user from the token
+        user = request.user
+        
+        print('user',user)
+ 
+        # Fetch  products (could be filtered by user if needed)
+        products = Product.objects.all().filter(category=pk)
+        
+        print('products',products)
+        
+        
+
+        # Serialize the data
+        product_serializer = ProductSerializer(products, many=True)
+
+        # Construct the response data
+        home_data = {
+            "status": True,
+            "user": {
+                "id": user.id,
+                "name": user.username,
+                "email": user.email
+            },
+            "data": {
+                "products": product_serializer.data
             }
         }
 

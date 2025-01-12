@@ -9,10 +9,8 @@ class ProductController extends GetxController {
   var productList = <ProductModels>[].obs;
   var favoritesList = <ProductModels>[].obs;
   var isLoading = true.obs;
-//// start search ////
   var searchList = <ProductModels>[].obs;
   TextEditingController searchController = TextEditingController();
-  //////end search////
   @override
   void onInit() {
     // TODO: implement onInit
@@ -40,7 +38,7 @@ class ProductController extends GetxController {
       return productList;
     } on AppException catch (e) {
     //  Get.snackbar('Error', e.toString());
-    print(e);
+    print('errrrrorr$e');
       isLoading.value = false;
 
       return null;

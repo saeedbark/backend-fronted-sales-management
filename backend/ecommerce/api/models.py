@@ -30,6 +30,7 @@ class User(AbstractUser):
     
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    image = models.URLField(max_length=255, null=True, blank=True)
     description = models.TextField()
     
     
