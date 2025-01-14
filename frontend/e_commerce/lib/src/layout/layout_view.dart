@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart' as badge;
 import 'package:badges/badges.dart';
+import 'package:e_commerce/shared_pref/shared_preferences.dart';
 import 'package:e_commerce/src/layout/layout_controller.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,8 @@ class MainView extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: () {
+
+                        SharedPreferencesHelper.remove('token');
                         // Get.toNamed(Routes.cartScreen);
                       },
                       icon: const Icon(

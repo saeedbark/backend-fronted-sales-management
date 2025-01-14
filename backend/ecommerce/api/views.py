@@ -48,7 +48,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class Products(APIView):
-    print('---------home-------------')
+    print('---------Products-------------')
     permission_classes = [IsAuthenticated]  # Require authentication
 
     def get(self, request):
@@ -81,7 +81,7 @@ class Products(APIView):
 
 
 class Categories(APIView):
-    print('---------categroy-------------')
+    print('---------Categroy-------------')
     permission_classes = [IsAuthenticated]  # Require authentication
 
     def get(self, request):
@@ -111,7 +111,7 @@ class Categories(APIView):
 
 class ProductsByCategory(APIView):
     permission_classes = [IsAuthenticated]  # Require authentication
-    print('---------categroy-------------')
+    print('---------Products_Categroy-------------')
     def get(self, request,pk):
         print('request',request)
         # Get the authenticated user from the token

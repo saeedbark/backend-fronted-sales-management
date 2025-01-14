@@ -28,7 +28,7 @@ class LoginView extends StatelessWidget {
             key: controller.formKey,
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 1.3,
                   child: Padding(
