@@ -1,20 +1,18 @@
 import 'package:e_commerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
-
-void main()  {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(const Ecommerce());
 }
 
-class MyApp extends StatelessWidget {
-
-  const MyApp({ Key? key}) : super(key: key);
+class Ecommerce extends StatelessWidget {
+  const Ecommerce({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig:AppRoutes. router,
+      routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
     );
   }

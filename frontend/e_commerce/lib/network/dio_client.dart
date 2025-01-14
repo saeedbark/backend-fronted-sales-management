@@ -40,9 +40,17 @@ class DioHelper {
     }
   }
 
-  Future<Response?> post(String endpoint, {Map<String, dynamic>? data}) async {
+  Future<Response?> post(
+    String endpoint, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? headers,
+  }) async {
     try {
-      return await _dio.post(endpoint, data: data);
+      return await _dio.post(
+        endpoint,
+        data: data,
+        options: Options(headers: headers),
+      );
     } on DioException catch (e) {
       _handleException(e);
       return null;

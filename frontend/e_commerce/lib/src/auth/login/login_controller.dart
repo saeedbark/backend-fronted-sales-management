@@ -30,7 +30,9 @@ class LoginController extends GetxController {
 
       isLoading.value = false;
 
-      AppRoutes.router.go( AppRoutes.product);
+     // AppRoutes.router.go( AppRoutes.product);
+
+      AppRoutes.router.go(AppRoutes.otp);
 
       return LoginModel.fromJson(response['data']);
     } on AppException catch (e) {
