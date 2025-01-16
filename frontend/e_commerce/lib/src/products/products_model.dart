@@ -57,7 +57,7 @@ class Rating {
   int count;
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-    rate: json["rate"]?.toDouble(),
+    rate: json["rate"]?.toDouble() ?? 3.0,
     count: json["count"],
   );
 

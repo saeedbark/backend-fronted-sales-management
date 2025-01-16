@@ -73,7 +73,7 @@ class ProductsView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10,),
-          CardItem(),
+         const CardItem(),
         ],
       ),
     ));

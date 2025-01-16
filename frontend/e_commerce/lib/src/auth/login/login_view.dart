@@ -52,7 +52,7 @@ class LoginView extends StatelessWidget {
                                 text: 'IN',
                                 color:
                                     Get.isDarkMode ? Colors.white : blackColor,
-                                underline: TextDecoration.none)
+                                underline: TextDecoration.none,)
                           ],
                         ),
                         const SizedBox(

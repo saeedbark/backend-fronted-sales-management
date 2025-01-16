@@ -13,7 +13,6 @@ class ProductController extends GetxController {
   TextEditingController searchController = TextEditingController();
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
   
     getProducts();
@@ -45,26 +44,26 @@ class ProductController extends GetxController {
     }
   }
 
-  // void manageFavorites(int productId) async {
-  //   var existIndex =
-  //       favoritesList.indexWhere((element) => element.id == productId);
-  //   print('============');
-  //   print(existIndex);
-  //   print('============');
-  //   if (existIndex >= 0) {
-  //     favoritesList.removeAt(existIndex);
-  //     await storage.remove('isFavoritesList');
-  //   } else {
-  //     favoritesList
-  //         .add(productList.firstWhere((element) => element.id == productId));
+  void manageFavorites(int productId) async {
+    var existIndex =
+        favoritesList.indexWhere((element) => element.id == productId);
+    print('============');
+    print(existIndex);
+    print('============');
+    if (existIndex >= 0) {
+      favoritesList.removeAt(existIndex);
+      //await storage.remove('isFavoritesList');
+    } else {
+      favoritesList
+          .add(productList.firstWhere((element) => element.id == productId));
 
-  //     await storage.write('isFavoritesList', favoritesList);
-  //   }
-  // }
+     // await storage.write('isFavoritesList', favoritesList);
+    }
+  }
 
-  // bool isFavorites(int productId) {
-  //   return favoritesList.any((element) => element.id == productId);
-  // }
+  bool isFavorites(int productId) {
+    return favoritesList.any((element) => element.id == productId);
+  }
 
   // ///////// Search Bar Logic
   // void addSearchToList(String searchName) {
