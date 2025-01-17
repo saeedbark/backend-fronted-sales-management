@@ -1,6 +1,6 @@
 import 'package:e_commerce/constent/my_string.dart';
-import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/auth/login/login_controller.dart';
+import 'package:e_commerce/src/auth/register/register_view.dart';
 import 'package:e_commerce/src/widget/auth/auth_button.dart';
 import 'package:e_commerce/src/widget/auth/auth_text_field_form.dart';
 import 'package:e_commerce/src/widget/auth/container_under.dart';
@@ -8,7 +8,6 @@ import 'package:e_commerce/src/widget/text_util.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -47,12 +46,12 @@ class LoginView extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             TextUtils(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                text: 'IN',
-                                color:
-                                    Get.isDarkMode ? Colors.white : blackColor,
-                                underline: TextDecoration.none)
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              text: 'IN',
+                              color: Get.isDarkMode ? Colors.white : blackColor,
+                              underline: TextDecoration.none,
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -78,16 +77,14 @@ class LoginView extends StatelessWidget {
                           suffixIcon: const Text(""),
                           text: 'Email',
                           type: TextInputType.emailAddress,
-                          validator: (Value) {
-                            if (!RegExp(validationEmail).hasMatch(Value)) {
+                          validator: (value) {
+                            if (!RegExp(validationEmail).hasMatch(value)) {
                               return 'Enter valid email';
                             }
                             return null;
                           },
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        const SizedBox(height: 20),
                         GetBuilder<LoginController>(builder: (_) {
                           return authTextFromField(
                             controller: controller.passwordController,
@@ -118,11 +115,11 @@ class LoginView extends StatelessWidget {
                                     : const Icon(
                                         Icons.visibility,
                                         color: Colors.black,
-                                      )),
+                                      ),),
                             text: 'Password',
                             type: TextInputType.visiblePassword,
-                            validator: (Value) {
-                              if (Value.toString().length <= 8) {
+                            validator: (value) {
+                              if (value.toString().length <= 8) {
                                 return 'Password should be longer or equal to 8 characters';
                               }
                               return null;
@@ -132,28 +129,27 @@ class LoginView extends StatelessWidget {
                         Align(
                           alignment: Alignment.bottomRight,
                           child: TextButton(
-                            onPressed: () {
-                              //  Get.toNamed(Routes.forgetScreen);
-                            },
+                            onPressed: () {},
                             child: TextUtils(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                text: 'Forget Password? ',
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : Colors.black,
-                                underline: TextDecoration.none),
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              text: 'Forget Password? ',
+                              color:
+                                  Get.isDarkMode ? Colors.white : Colors.black,
+                              underline: TextDecoration.none,
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
+                        const SizedBox(height: 30),
                         const SizedBox(
                           height: 50,
                         ),
                         GetBuilder<LoginController>(builder: (_) {
                           return AuthButton(
-                            onpress: () => controller.login(context),
+                            onpress: () =>
+                               controller.login(context),
+                                
+                            
                             text: 'LOG IN',
                           );
                         }),
@@ -193,7 +189,12 @@ class LoginView extends StatelessWidget {
                 ContainerUnder(
                   text: "Don't have an Account?",
                   textType: 'Sign up',
-                  onPress: () => context.go(AppRoutes.register),
+                  onPress: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterView(),
+                    ),
+                  ),
                 ),
               ],
             ),

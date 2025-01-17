@@ -29,7 +29,7 @@ class AppRoutes {
       final isAuthenticated = token != null && token.isNotEmpty;
 
       if (!isAuthenticated) {
-        return AppRoutes.otp;
+        return AppRoutes.login;
       }
 
       return null;

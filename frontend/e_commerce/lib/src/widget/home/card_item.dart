@@ -1,4 +1,5 @@
 
+import 'package:e_commerce/src/product_details/product_details_view.dart';
 import 'package:e_commerce/src/products/products_controller.dart';
 import 'package:e_commerce/src/products/products_model.dart';
 import 'package:e_commerce/src/widget/home/searchEmpty.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardItem extends StatelessWidget {
-  CardItem({Key? key}) : super(key: key);
+ const CardItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class CardItem extends StatelessWidget {
         return Expanded(
           child: controller.searchList.isEmpty &&
                   controller.searchController.text.isNotEmpty
-              ? SearchEmpty()
+              ?const SearchEmpty()
               : GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     childAspectRatio: 0.8,
@@ -46,11 +47,19 @@ class CardItem extends StatelessWidget {
                       return buildCardItem(
                         image: currentProduct.image,
                         price: currentProduct.price,
-                        rating: currentProduct.rating?.rate ?? 0.0,
+                        rating: currentProduct.rating?.rate ?? 3.0,
                         productId: currentProduct.id,
                         productModels: currentProduct,
                         onTap: () {
                           // Handle navigation or other actions
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductDetailsView(
+                                productModels: currentProduct,
+                              ),
+                            ),
+                          );
                         },
                       );
                     });

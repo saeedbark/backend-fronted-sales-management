@@ -7,7 +7,8 @@ class OtpService {
         final response = await DioHelper().post(
             'https://chinguisoft.com/api/sms/validation/FoaXSIcUccTdGtEo',
             data: {
-                'phoneNumber': phoneNumber,
+                'phone': phoneNumber,
+                'lang': 'fr',
             },
             headers: {
                 'Validation-token':'0WomNof4civsTbT2UlUTSYSqYh2HTK0M',
