@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {
-  var productList = <ProductModels>[].obs;
-  var favoritesList = <ProductModels>[].obs;
-  var isLoading = true.obs;
-  var searchList = <ProductModels>[].obs;
+  final  productList = <ProductModels>[].obs;
+  final favoritesList = <ProductModels>[].obs;
+  final isLoading = true.obs;
+  final searchList = <ProductModels>[].obs;
+
   TextEditingController searchController = TextEditingController();
   @override
   void onInit() {
@@ -47,17 +48,13 @@ class ProductController extends GetxController {
   void manageFavorites(int productId) async {
     var existIndex =
         favoritesList.indexWhere((element) => element.id == productId);
-    print('============');
-    print(existIndex);
-    print('============');
+
     if (existIndex >= 0) {
       favoritesList.removeAt(existIndex);
-      //await storage.remove('isFavoritesList');
     } else {
       favoritesList
           .add(productList.firstWhere((element) => element.id == productId));
 
-     // await storage.write('isFavoritesList', favoritesList);
     }
   }
 
@@ -65,23 +62,5 @@ class ProductController extends GetxController {
     return favoritesList.any((element) => element.id == productId);
   }
 
-  // ///////// Search Bar Logic
-  // void addSearchToList(String searchName) {
-  //   searchName = searchName.toLowerCase();
-  //   searchList.value = productList.where((search) {
 
-  //     var searchTitle = search.title.toLowerCase();
-  //     var searchPrice= search.price.toString().toLowerCase();
-
-  //     return searchTitle.contains(searchName) ||
-  //         searchPrice.toString().contains(searchName);
-  //   }).toList();
-
-  //   update();
-  // }
-
-  // void clearSearch() {
-  //   searchController.clear();
-  //   addSearchToList("");
-  // }
 }

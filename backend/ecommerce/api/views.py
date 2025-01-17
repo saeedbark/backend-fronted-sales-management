@@ -78,7 +78,41 @@ class Products(APIView):
         }
 
         return Response(home_data)
+    
+class ProductDetails(APIView):
+    print('---------ProductDetail-------------')
+    permission_classes = [IsAuthenticated]
+    
+    def get(self,request,pk):
+        user = request.user
+        
+        product = Product.objects.get(id=pk)
+        
+                
+        print('product',product)
+        
+        
 
+        # Serialize the data
+        product_serializer = ProductSerializer(product, many=False)
+
+        # Construct the response data
+        home_data = {
+            "status": True,
+            "user": {
+                "id": user.id,
+                "name": user.username,
+                "email": user.email
+            },
+            "data": {
+                "product": product_serializer.data
+            }
+        }
+
+        return Response(home_data)
+        
+        
+        
 
 class Categories(APIView):
     print('---------Categroy-------------')
@@ -143,3 +177,5 @@ class ProductsByCategory(APIView):
         }
 
         return Response(home_data)
+    
+    

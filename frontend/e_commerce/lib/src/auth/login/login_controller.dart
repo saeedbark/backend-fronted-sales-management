@@ -1,7 +1,7 @@
 import 'package:e_commerce/network/app_exceptions.dart';
-import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/auth/login/login_model.dart';
 import 'package:e_commerce/src/auth/login/login_service.dart';
+import 'package:e_commerce/src/auth/otp/otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,12 +31,13 @@ class LoginController extends GetxController {
       isLoading.value = false;
 
      // AppRoutes.router.go( AppRoutes.product);
+     Navigator.push(context, MaterialPageRoute(builder: (context) =>const OtpView()));
 
-      AppRoutes.router.go(AppRoutes.otp);
+    //  AppRoutes.router.go(AppRoutes.otp);
 
       return LoginModel.fromJson(response['data']);
     } on AppException catch (e) {
-      Get.snackbar('Error', e.toString());
+    //  Get.snackbar('Error', e.toString());
       isLoading.value = false;
 
       return null;

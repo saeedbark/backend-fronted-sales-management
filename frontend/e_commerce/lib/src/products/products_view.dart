@@ -76,6 +76,7 @@ class ProductsView extends StatelessWidget {
          const CardItem(),
         ],
       ),
-    ));
+    ),
+    );
   }
 }

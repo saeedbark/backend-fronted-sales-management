@@ -1,5 +1,6 @@
 import 'package:e_commerce/constent/my_string.dart';
 import 'package:e_commerce/routes/app_routes.dart';
+import 'package:e_commerce/src/auth/login/login_view.dart';
 import 'package:e_commerce/src/auth/register/register_controller.dart';
 import 'package:e_commerce/src/widget/auth/auth_button.dart';
 import 'package:e_commerce/src/widget/auth/auth_text_field_form.dart';
@@ -201,7 +202,12 @@ class RegisterView extends StatelessWidget {
               ContainerUnder(
                 text: 'Already have an Account? ',
                 textType: 'Log in',
-                onPress: () => context.go(AppRoutes.login),
+                onPress: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginView(),
+                  ),
+                ),
               ),
             ],
           ),
