@@ -31,7 +31,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',  # For localhost
     'localhost',  # For localhost
     '172.10.38.153',  # Your machine's IP address
-    '10.0.38.172'
+    '10.0.38.172',
+    '172.20.10.2'
 ]
 
 AUTH_USER_MODEL = 'api.User'

@@ -2,14 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework import status
-from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer
+from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer,CartSerializer, PaymentSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 
 
 from rest_framework.permissions import AllowAny
 
-from .models import Product,Category
+from .models import Product,Category,Cart, CartItem, Product, Payment
 
 
 # Register View
@@ -178,4 +178,59 @@ class ProductsByCategory(APIView):
 
         return Response(home_data)
     
+    
+    
+    
+   
+
+class CartView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    print('---------CartView-------------')
+
+    def get(self, request):
+        user = request.user
+        cart, created = Cart.objects.get_or_create(user=user)
+        serializer = CartSerializer(cart)
+        return Response({"status": True, "data": serializer.data})
+
+    def post(self, request):
+        
+        user = request.user
+        product_id = request.data.get('product_id')
+        quantity = request.data.get('quantity', 1)
+        cart, created = Cart.objects.get_or_create(user=user)
+
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return Response({"status": False, "message": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if not created:
+            cart_item.quantity += int(quantity)
+        else:
+            cart_item.quantity = int(quantity)
+        cart_item.save()
+
+        return Response({"status": True, "message": "Item added to cart"})
+
+class PaymentView(APIView):
+    permission_classes = [IsAuthenticated]
+    print('---------PaymentView-------------')
+
+    def post(self, request):
+        user = request.user
+        amount = request.data.get('amount')
+
+        if not amount:
+            return Response({"status": False, "message": "Amount is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        payment = Payment.objects.create(user=user, amount=amount, status='PENDING')
+
+        # Simulate payment processing
+        payment.status = 'COMPLETED'
+        payment.save()
+
+        return Response({"status": True, "message": "Payment completed", "data": PaymentSerializer(payment).data})
     
