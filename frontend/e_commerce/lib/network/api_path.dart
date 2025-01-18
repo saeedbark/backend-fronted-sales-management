@@ -3,4 +3,5 @@ class ApiPath {
   static const String register = "register/";
   static const String products = "products/";
   static const String categories= "categories/";
+  static const String allProductsByCategory= "categories/";
 }

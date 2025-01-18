@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
   List<CategoryModel> categoriesList = [];
+  var categoryList = <ProductModels>[].obs;
 final isCategoryLoading = false.obs;
   // var categoryList = <ProductModels>[].obs;
   var isAllCategoryLoading = false.obs;
@@ -28,4 +29,20 @@ final isCategoryLoading = false.obs;
       Get.snackbar('Error', e.toString());
     }
   }
+
+
+  void getProductsByCategory(int id) async {
+    isCategoryLoading(true);
+
+    try {
+      final products = await CategoryService().getProductsByCategory(id);
+      isCategoryLoading(false);
+      categoryList.value = products;
+    } on AppException catch (e) {
+      isCategoryLoading(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+
 }

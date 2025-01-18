@@ -26,29 +26,29 @@ class ProductsView extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+            child:const Padding(
+              padding:  EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
-                   const TextUtils(
+                    TextUtils(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     text: 'Find your',
                     color: Colors.white,
                     underline: TextDecoration.none,
                   ),
-                  const SizedBox(
+                   SizedBox(
                     height: 5,
                   ),
-                  const TextUtils(
+                   TextUtils(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     text: 'INSPIRATION',
                     color: Colors.white,
                     underline: TextDecoration.none,
                   ),
-                  const SizedBox(
+                   SizedBox(
                     height: 20,
                   ),
                   SearchFormText(),
