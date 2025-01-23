@@ -1,5 +1,4 @@
 import 'package:e_commerce/shared_pref/shared_preferences.dart';
-import 'package:e_commerce/src/auth/otp/enter_otp/enter_otp_view.dart';
 import 'package:e_commerce/src/auth/otp/otp_view.dart';
 import 'package:e_commerce/src/layout/layout_view.dart';
 import 'package:e_commerce/src/products/products_view.dart';
@@ -47,10 +46,10 @@ class AppRoutes {
         path: AppRoutes.otp,
         builder: (context, state) => const OtpView(),
       ),
-      GoRoute(
-        path: AppRoutes.enterOtp,
-        builder: (context, state) => const EnterOtp(),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.enterOtp,
+      //   builder: (context, state) => const EnterOtp(),
+      // ),
       GoRoute(
         path: AppRoutes.main,
         builder: (context, state) => const MainView(),
