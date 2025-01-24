@@ -1,3 +1,4 @@
+import 'package:e_commerce/src/cart/cart_controller.dart';
 import 'package:e_commerce/src/product_details/product_details_view.dart';
 import 'package:e_commerce/src/products/products_controller.dart';
 import 'package:e_commerce/src/products/products_model.dart';
@@ -13,6 +14,7 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
+
 
     return Obx(() {
       // Only use Obx here to rebuild when `isLoading` changes.
@@ -71,13 +73,15 @@ class CardItem extends StatelessWidget {
 
   Widget buildCardItem({
     required String image,
-    required String price,
+    required double price,
     required double rating,
     required int productId,
     required ProductModels productModels,
     required Function() onTap,
   }) {
     final controller = Get.put(ProductController());
+          final cartcontroller = Get.put(CartController());
+
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -113,7 +117,7 @@ class CardItem extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      // Handle cart action
+                          cartcontroller.addProductToCart(productModels);
                     },
                     icon: const Icon(
                       Icons.shopping_cart,

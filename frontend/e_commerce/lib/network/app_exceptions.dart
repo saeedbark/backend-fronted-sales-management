@@ -1,3 +1,4 @@
+// network/app_exceptions.dart
 class AppException implements Exception {
   final String message;
   final String prefix;
@@ -38,4 +39,9 @@ class InternalServerErrorException extends AppException {
 class InvalidInputException extends AppException {
   InvalidInputException([String? message])
       : super(message ?? 'Invalid input', 'Invalid Input Exception');
+}
+
+class PaymentRequiredException extends AppException {
+  PaymentRequiredException([String? message])
+      : super(message ?? 'Payment is required to proceed.', 'Payment Required');
 }

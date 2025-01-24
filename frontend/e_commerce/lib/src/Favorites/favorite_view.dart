@@ -55,7 +55,7 @@ class FavoritesScreen extends StatelessWidget {
   Widget buildFavItem({
     required String image,
     required String title,
-    required String price,
+    required double price,
     required int productId,
   }) {
     final controller = Get.put(ProductController());

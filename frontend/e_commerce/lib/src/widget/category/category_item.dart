@@ -61,7 +61,7 @@ const  CategoryItem({super.key});
 
   Widget buildCardItem({
     required String image,
-    required String price,
+    required double price,
     required double rating,
     required int productId,
     required ProductModels productModels,

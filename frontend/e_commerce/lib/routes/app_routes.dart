@@ -1,5 +1,4 @@
 import 'package:e_commerce/shared_pref/shared_preferences.dart';
-import 'package:e_commerce/src/auth/otp/enter_otp/enter_otp_view.dart';
 import 'package:e_commerce/src/auth/otp/otp_view.dart';
 import 'package:e_commerce/src/layout/layout_view.dart';
 import 'package:e_commerce/src/products/products_view.dart';
@@ -17,6 +16,7 @@ class AppRoutes {
   static const String prouductsCategory = '/prouductsCategory';
   static const String otp = '/otp';
   static const String enterOtp = '/enter-otp';
+  static const String cart = '/cart';
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -26,6 +26,7 @@ class AppRoutes {
     initialLocation: AppRoutes.main,
     redirect: (context, state) async {
       final token = await SharedPreferencesHelper.getString('token');
+      final code = await SharedPreferencesHelper.getString('code');
       final isAuthenticated = token != null && token.isNotEmpty;
 
       if (!isAuthenticated) {
@@ -47,10 +48,10 @@ class AppRoutes {
         path: AppRoutes.otp,
         builder: (context, state) => const OtpView(),
       ),
-      GoRoute(
-        path: AppRoutes.enterOtp,
-        builder: (context, state) => const EnterOtp(),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.enterOtp,
+      //   builder: (context, state) => const EnterOtp(),
+      // ),
       GoRoute(
         path: AppRoutes.main,
         builder: (context, state) => const MainView(),

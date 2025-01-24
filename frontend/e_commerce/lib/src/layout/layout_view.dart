@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart' as badge;
 import 'package:badges/badges.dart';
-import 'package:e_commerce/shared_pref/shared_preferences.dart';
+import 'package:e_commerce/src/cart/cart_controller.dart';
+import 'package:e_commerce/src/cart/cart_view.dart';
 import 'package:e_commerce/src/layout/layout_controller.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LayoutController());
+    final cartController = Get.put(CartController());
     return SafeArea(
       child: Obx(
         () {
@@ -26,15 +28,17 @@ class MainView extends StatelessWidget {
                   child: badge.Badge(
                     position: BadgePosition.topEnd(top: 0, end: 3),
                     badgeContent: Text(
-                      //cartController.quantity().toString(),
-                      '0',
+                      cartController.quantity().toString(),
                       style: const TextStyle(color: Colors.white),
                     ),
                     child: IconButton(
                       onPressed: () {
-
-                        SharedPreferencesHelper.remove('token');
-                        // Get.toNamed(Routes.cartScreen);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartView(),
+                          ),
+                        );
                       },
                       icon: const Icon(
                         Icons.shopping_cart,
