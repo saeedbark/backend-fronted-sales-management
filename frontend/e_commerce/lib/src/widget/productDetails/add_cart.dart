@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddCart extends StatelessWidget {
-  final String price;
+  final double price;
   final ProductModels productModels;
   const AddCart({super.key, required this.price, required this.productModels});
   //final controller = Get.find<CartController>();
@@ -25,7 +25,7 @@ class AddCart extends StatelessWidget {
                 underline: TextDecoration.none,
               ),
               Text(
-                price,
+                price.toStringAsFixed(2),
                 style: TextStyle(
                   color: Get.isDarkMode ? Colors.white : Colors.black,
                   fontSize: 20,

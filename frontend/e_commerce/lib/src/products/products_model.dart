@@ -1,7 +1,7 @@
 class ProductModels {
   final int id;
   final String title;
-  final String price;
+  final double price;
   final String? description;
   final String? category;
   final String image;
@@ -19,7 +19,7 @@ class ProductModels {
   factory ProductModels.fromJson(Map<String, dynamic> json) => ProductModels(
         id: json["id"],
         title: json["name"],
-        price: json["price"],
+        price:double.tryParse(json["price"])??0.0 ,
         description: json["description"] ?? 'des',
         category: json["category"] ?? '',
         image: json["image"],

@@ -16,6 +16,7 @@ class AppRoutes {
   static const String prouductsCategory = '/prouductsCategory';
   static const String otp = '/otp';
   static const String enterOtp = '/enter-otp';
+  static const String cart = '/cart';
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -25,6 +26,7 @@ class AppRoutes {
     initialLocation: AppRoutes.main,
     redirect: (context, state) async {
       final token = await SharedPreferencesHelper.getString('token');
+      final code = await SharedPreferencesHelper.getString('code');
       final isAuthenticated = token != null && token.isNotEmpty;
 
       if (!isAuthenticated) {

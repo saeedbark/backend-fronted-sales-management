@@ -40,12 +40,19 @@ class OtpView extends StatelessWidget {
           ),
         ),
         body: Obx(() {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: controller.isOtpSent.value
-                ? _buildOtpVerification(
-                    context, controller, defaultPinTheme, fillColor, focusedBorderColor,)
-                : _buildPhoneInput(context, controller),
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: controller.isOtpSent.value
+                  ? _buildOtpVerification(
+                      context,
+                      controller,
+                      defaultPinTheme,
+                      fillColor,
+                      focusedBorderColor,
+                    )
+                  : _buildPhoneInput(context, controller),
+            ),
           );
         }),
       ),
@@ -84,14 +91,12 @@ class OtpView extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
             ),
-         
           ),
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: controller.isLoading.value ? null : controller.sendOtp,
             style: ElevatedButton.styleFrom(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -111,12 +116,8 @@ class OtpView extends StatelessWidget {
   }
 
   // Build OTP Verification
-  Widget _buildOtpVerification(
-      BuildContext context,
-      OtpController controller,
-      PinTheme defaultPinTheme,
-      Color fillColor,
-      Color focusedBorderColor) {
+  Widget _buildOtpVerification(BuildContext context, OtpController controller,
+      PinTheme defaultPinTheme, Color fillColor, Color focusedBorderColor) {
     return Form(
       key: controller.otpFormKey,
       child: Column(
@@ -135,7 +136,7 @@ class OtpView extends StatelessWidget {
             controller: controller.otpController,
             focusNode: controller.focusNode,
             defaultPinTheme: defaultPinTheme,
-          length: 6,
+            length: 6,
             separatorBuilder: (index) => const SizedBox(width: 8),
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
@@ -182,10 +183,11 @@ class OtpView extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed:()=> controller.isLoading.value ? null : controller.verifyOtp(context),
+            onPressed: () => controller.isLoading.value
+                ? null
+                : controller.verifyOtp(context),
             style: ElevatedButton.styleFrom(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
