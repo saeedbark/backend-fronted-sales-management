@@ -12,7 +12,7 @@ class LayoutController extends GetxController {
     const ProductsView(),
   const  CategoryScreen(),
    const FavoritesScreen(),
-   const SettingScreen(),
+   const SettingView(),
   ].obs;
 
   final title = [
