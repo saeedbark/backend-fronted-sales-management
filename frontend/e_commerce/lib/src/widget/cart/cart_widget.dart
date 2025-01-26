@@ -16,9 +16,7 @@ class EmptyCard extends StatelessWidget {
             color: Get.isDarkMode ? Colors.white : blackColor,
             size: 150,
           ),
-          const SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 30),
           RichText(
             text: TextSpan(
               children: [
@@ -44,27 +42,31 @@ class EmptyCard extends StatelessWidget {
           Text(
             'Add item to get Started',
             style: TextStyle(
-                fontSize: 15,
-                color: Get.isDarkMode ? Colors.white : blackColor,
-                fontWeight: FontWeight.bold),
+              fontSize: 15,
+              color: Get.isDarkMode ? Colors.white : blackColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          const SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           SizedBox(
             height: 45,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 backgroundColor: Get.isDarkMode ? pinkColor : mainColor,
                 elevation: 0,
               ),
               onPressed: () {
-               // Get.toNamed(Routes.mainScreen);
+                // Get.toNamed(Routes.mainScreen);
               },
-              child: const Text('Go to Home',style: TextStyle(fontSize: 20,),),
+              child: const Text(
+                'Go to Home',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
             ),
           ),
         ],

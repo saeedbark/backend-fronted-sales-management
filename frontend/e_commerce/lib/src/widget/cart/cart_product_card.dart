@@ -55,15 +55,14 @@ class CartProductCard extends StatelessWidget {
                 Text(
                   productModels.title,
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    overflow: TextOverflow.ellipsis,
-                    color: Get.isDarkMode ? Colors.white : blackColor,
-                  ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                      color: Get.isDarkMode ? Colors.white : blackColor),
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  controller.productSubTotal[index],
+                  controller.productSubTotal[index].toString(),
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
