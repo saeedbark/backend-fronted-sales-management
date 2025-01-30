@@ -9,6 +9,7 @@ class RegisterService {
       data: {
         "name": name,
         "email": email,
+        "username": email,
         "password": password,
         "phone": phone, // Add phone field
       },

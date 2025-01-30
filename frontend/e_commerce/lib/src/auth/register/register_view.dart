@@ -164,6 +164,7 @@ class RegisterView extends StatelessWidget {
                         GetBuilder<RegisterController>(
                           builder: (_) {
                             return AuthButton(
+                              text: 'SIGN UP',
                               onpress: () {
                                 if (controller.ischeckBox == false) {
                                   Get.snackbar(
@@ -174,23 +175,25 @@ class RegisterView extends StatelessWidget {
                                     colorText: Colors.white,
                                   );
                                 } else {
-                                  //    if(formKey.currentState!.validate()){
-                                  String name =
-                                      controller.nameController.text.trim();
-                                  String email =
-                                      controller.emailController.text.trim();
-                                  String password =
-                                      controller.passwordController.text;
-                                  // controller.signUpUsingFirebase(
-                                  //     name: name,
-                                  //     email: email,
-                                  //     password: password
-                                  // );
+                                  if (!controller.formKey.currentState!
+                                      .validate()) {
+                                    String name =
+                                        controller.nameController.text.trim();
+                                    String email =
+                                        controller.emailController.text.trim();
+                                    String password =
+                                        controller.passwordController.text;
+                                    controller.register(
+                                      name,
+                                      email,
+                                      password,
+                                      '1235555',
+                                    );
+                                  }
                                   controller.ischeckBox = true;
                                   //    }
                                 }
                               },
-                              text: 'SIGN UP',
                             );
                           },
                         ),
