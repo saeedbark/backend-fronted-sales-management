@@ -1,9 +1,12 @@
 import 'package:e_commerce/src/auth/otp/otp_view.dart';
+import 'package:e_commerce/src/cart/cart_view.dart';
 import 'package:e_commerce/src/layout/layout_view.dart';
+import 'package:e_commerce/src/payment/payment_screen.dart';
 import 'package:e_commerce/src/products/products_view.dart';
 import 'package:e_commerce/src/auth/login/login_view.dart';
 import 'package:e_commerce/src/auth/register/register_view.dart';
 import 'package:e_commerce/src/products_category/products_view.dart';
+import 'package:e_commerce/src/widget/category/category_item.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoute {
@@ -11,10 +14,13 @@ class AppRoute {
   static const String register = '/register';
   static const String main = '/main';
   static const String product = '/products';
+  static const String productDetails = '/productDetails';
   static const String prouductsCategory = '/prouductsCategory';
+  static const String categoryItem = '/categoryItem';
   static const String otp = '/otp';
   static const String enterOtp = '/enter-otp';
   static const String cart = '/cart';
+  static const String payment = '/payment';
 
   static final router = [
     GetPage(
@@ -42,8 +48,20 @@ class AppRoute {
       page: () => const ProductsView(),
     ),
     GetPage(
+      name: AppRoute.categoryItem,
+      page: () => const CategoryItem(),
+    ),
+    GetPage(
       name: AppRoute.prouductsCategory,
       page: () => const ProductsCategoryView(),
+    ),
+    GetPage(
+      name: AppRoute.cart,
+      page: () => const CartView(),
+    ),
+    GetPage(
+      name: AppRoute.payment,
+      page: () => const PaymentScreen(),
     ),
   ];
 }

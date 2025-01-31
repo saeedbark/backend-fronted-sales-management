@@ -7,7 +7,6 @@ import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class SettingView extends StatelessWidget {
   const SettingView({super.key});
 
@@ -18,17 +17,13 @@ class SettingView extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          ProfileImage(),
-          const SizedBox(
-            height: 10
-          ),
+          const ProfileImage(),
+          const SizedBox(height: 10),
           Divider(
             color: Get.isDarkMode ? Colors.white : Colors.grey,
             thickness: 2,
           ),
-          const SizedBox(
-            height: 20
-          ),
+          const SizedBox(height: 20),
           TextUtils(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -36,17 +31,11 @@ class SettingView extends StatelessWidget {
             color: Get.isDarkMode ? pinkColor : mainColor,
             underline: TextDecoration.none,
           ),
-          const SizedBox(
-            height: 20
-          ),
-          DarkModeWidget(),
-          const SizedBox(
-            height: 20
-          ),
+          const SizedBox(height: 20),
+           DarkModeWidget(),
+          const SizedBox(height: 20),
           LanguageWidget(),
-          const SizedBox(
-            height: 20
-          ),
+          const SizedBox(height: 20),
           LogOutWidget(),
         ],
       ),

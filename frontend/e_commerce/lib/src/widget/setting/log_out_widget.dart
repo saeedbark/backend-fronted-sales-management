@@ -66,7 +66,7 @@ class LogOutWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              width: 20,
+              width: 20
             ),
             TextUtils(
               fontSize: 22,

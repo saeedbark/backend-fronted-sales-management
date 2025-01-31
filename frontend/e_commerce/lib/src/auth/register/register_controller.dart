@@ -3,25 +3,23 @@ import 'package:e_commerce/src/auth/register/register_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class RegisterController extends GetxController {
   final RxBool isLoading = false.obs;
 
-    final TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController(); // Add phone field
+  final TextEditingController phoneController =
+      TextEditingController(); // Add phone field
 
-    final formKey = GlobalKey<FormState>();
-      bool ischeckBox = false;
+  final formKey = GlobalKey<FormState>();
+  bool ischeckBox = false;
 
-
-
-
-  Future<void> register(String name, String email, String password, String phone) async {
+  Future<void> register(
+      String name, String email, String password, String phone) async {
     isLoading.value = true;
     try {
-    await RegisterService().register(name, email, password, phone);
+      await RegisterService().register(name, email, password, phone);
       Get.offAllNamed('/login');
     } on AppException catch (e) {
       Get.snackbar('Error', e.toString());
@@ -30,11 +28,9 @@ class RegisterController extends GetxController {
     }
   }
 
+  bool isVisibilty = false;
 
-      bool isVisibilty = false;
-
-
-     void visibilty() {
+  void visibilty() {
     isVisibilty = !isVisibilty;
     update();
   }
@@ -43,6 +39,4 @@ class RegisterController extends GetxController {
     ischeckBox = !ischeckBox;
     update();
   }
-
-
 }

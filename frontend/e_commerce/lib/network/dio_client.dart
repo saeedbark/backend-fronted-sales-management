@@ -13,7 +13,7 @@ class DioHelper {
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printResponseHeaders: true,
-          printResponseMessage: true,
+          printResponseMessage: true, 
         ),
       ),
     );

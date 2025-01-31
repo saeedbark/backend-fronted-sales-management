@@ -23,11 +23,14 @@ class CategoryWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    controller.getProductsByCategory(index);
+                    controller.getProductsByCategory(
+                        controller.categoriesList[index].id);
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CategoryItem()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CategoryItem(),
+                      ),
+                    );
                   },
                   child: Container(
                     height: 200,

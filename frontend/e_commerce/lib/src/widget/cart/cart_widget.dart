@@ -1,3 +1,4 @@
+import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,7 +60,7 @@ class EmptyCard extends StatelessWidget {
                 elevation: 0,
               ),
               onPressed: () {
-                // Get.toNamed(Routes.mainScreen);
+                Get.toNamed(AppRoute.main);
               },
               child: const Text(
                 'Go to Home',

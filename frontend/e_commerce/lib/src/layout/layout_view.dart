@@ -27,10 +27,12 @@ class MainView extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 10.0),
                   child: badge.Badge(
                     position: BadgePosition.topEnd(top: 0, end: 3),
-                    badgeContent: Text(
-                      cartController.quantity().toString(),
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    badgeContent: cartController.quantity() > 0
+                        ? Text(
+                            cartController.quantity().toString(),
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        : null,
                     child: IconButton(
                       onPressed: () {
                         Navigator.push(

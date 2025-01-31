@@ -1,5 +1,7 @@
-
-
+import 'package:badges/badges.dart' as badge;
+import 'package:badges/badges.dart';
+import 'package:e_commerce/src/cart/cart_controller.dart';
+import 'package:e_commerce/src/cart/cart_view.dart';
 import 'package:e_commerce/src/categories/categories_controller.dart';
 import 'package:e_commerce/src/product_details/product_details_view.dart';
 import 'package:e_commerce/src/products/products_controller.dart';
@@ -10,17 +12,50 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryItem extends StatelessWidget {
-const  CategoryItem({super.key});
-  @override
+  const CategoryItem({super.key});
+  @override 
   Widget build(BuildContext context) {
-      final controller = Get.put(ProductController());
-        final categoryController = Get.put(CategoryController());
-
+    
+    final controller = Get.put(ProductController());
+    final categoryController = Get.put(CategoryController());
+    final cartcontroller = Get.put(CartController());
 
     return Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
         appBar: AppBar(
           title: const Text('Category Item'),
+          actions: [
+            Obx(
+              () {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: badge.Badge(
+                    position: BadgePosition.topEnd(top: 0, end: 3),
+                    badgeContent: cartcontroller.quantity() > 0
+                        ? Text(
+                            cartcontroller.quantity().toString(),
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        : null,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartView(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
           centerTitle: true,
           backgroundColor: Get.isDarkMode ? Colors.black : mainColor,
         ),
@@ -44,7 +79,9 @@ const  CategoryItem({super.key});
                   return buildCardItem(
                     image: categoryController.categoryList[index].image,
                     price: categoryController.categoryList[index].price,
-                    rating: categoryController.categoryList[index].rating?.rate??3.0,
+                    rating:
+                        categoryController.categoryList[index].rating?.rate ??
+                            3.0,
                     productId: categoryController.categoryList[index].id,
                     productModels: categoryController.categoryList[index],
                     onTap: () {
@@ -69,7 +106,8 @@ const  CategoryItem({super.key});
   }
       //ProductModels model
       ) {
-              final controller = Get.put(ProductController());
+    final controller = Get.put(ProductController());
+    final cartcontroller = Get.put(CartController());
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -105,14 +143,22 @@ const  CategoryItem({super.key});
                                 Icons.favorite_outline,
                                 color: Colors.black,
                               )),
-                    IconButton(
-                        onPressed: () {
-                       //   cartcontroller.addProductToCart(productModels);
-                        },
-                        icon: const Icon(
+                    Obx(() {
+                      bool isInCart =
+                          cartcontroller.productsMap.containsKey(productModels);
+
+                      return IconButton(
+                        onPressed: isInCart
+                            ? null
+                            : () {
+                                cartcontroller.addProductToCart(productModels);
+                              },
+                        icon: Icon(
                           Icons.shopping_cart,
-                          color: Colors.black,
-                        )),
+                          color: isInCart ? Colors.grey : Colors.black,
+                        ),
+                      );
+                    }),
                   ],
                 );
               }),

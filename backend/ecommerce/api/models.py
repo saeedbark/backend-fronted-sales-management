@@ -69,13 +69,22 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart of {self.user.username}"
 
+# models.py
+
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    price_at_addition = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.price_at_addition:
+            self.price_at_addition = self.product.price
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+
 
 class Payment(models.Model):  
     user = models.ForeignKey(User, on_delete=models.CASCADE)
