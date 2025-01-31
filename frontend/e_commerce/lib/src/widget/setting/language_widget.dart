@@ -6,11 +6,12 @@ import 'package:get/get.dart';
 import '../text_util.dart';
 
 class LanguageWidget extends StatelessWidget {
- const LanguageWidget({super.key});
+  const LanguageWidget({super.key});
   @override
   Widget build(BuildContext context) {
-  final controller = Get.find<SettingController>();
-    return GetBuilder<SettingController>(builder: (_) {
+    final controller = Get.put(SettingController());
+    return GetBuilder<SettingController>(
+      builder: (_) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -29,9 +30,7 @@ class LanguageWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
+                  const SizedBox(width: 20),
                   TextUtils(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -65,7 +64,9 @@ class LanguageWidget extends StatelessWidget {
                       child: Text(
                         arabic,
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     DropdownMenuItem(
@@ -73,15 +74,19 @@ class LanguageWidget extends StatelessWidget {
                       child: Text(
                         english,
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     DropdownMenuItem(
                       value: frf,
                       child: Text(
                         french,
-                        style:  const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -95,6 +100,7 @@ class LanguageWidget extends StatelessWidget {
             )
           ],
         );
-      },);
+      },
+    );
   }
 }

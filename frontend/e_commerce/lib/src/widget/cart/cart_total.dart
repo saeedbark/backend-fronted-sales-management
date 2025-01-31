@@ -1,3 +1,4 @@
+import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/cart/cart_controller.dart';
 import 'package:e_commerce/src/widget/text_util.dart';
 import 'package:e_commerce/theme/theme.dart';
@@ -45,7 +46,7 @@ class CartTotal extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15))),
                 onPressed: () {
-                  // Get.toNamed(Routes.paymentScreen);
+                  Get.toNamed(AppRoute.payment);
                 },
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,

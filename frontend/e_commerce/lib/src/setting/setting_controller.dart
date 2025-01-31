@@ -7,9 +7,9 @@ class SettingController extends GetxController {
   // var storage = GetStorage();
   var langLocal = ene;
 
-  String capitalize(String profileName) {
-    return profileName.split(" ").map((name) => name.capitalize).join(" ");
-  }
+  // String capitalize(String profileName) {
+  //   return profileName.split(" ").map((name) => name.capitalize).join(" ");
+  // }
 
 // language
   @override

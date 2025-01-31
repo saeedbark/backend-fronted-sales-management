@@ -19,6 +19,9 @@ class CategoryService {
   }
 
   Future<List<ProductModels>> getProductsByCategory(int id) async {
+   
+   
+
     final response =
         await DioHelper().get('${ApiPath.allProductsByCategory}/$id');
 

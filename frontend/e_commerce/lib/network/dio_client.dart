@@ -7,13 +7,13 @@ class DioHelper {
   final Dio _dio = Dio();
 
   DioHelper() {
-    _dio.options.baseUrl = "http://192.168.9.156:8000/api/";
+    _dio.options.baseUrl = "http://10.0.38.172:8000/api/";
     _dio.interceptors.add(
       TalkerDioLogger(
         settings: const TalkerDioLoggerSettings(
           printRequestHeaders: true,
           printResponseHeaders: true,
-          printResponseMessage: true,
+          printResponseMessage: true, 
         ),
       ),
     );

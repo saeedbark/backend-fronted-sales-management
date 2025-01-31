@@ -35,7 +35,10 @@ class SearchFormText extends StatelessWidget {
               : null,
           hintText: "Search Name Product Or Price",
           hintStyle: const TextStyle(
-              color: Colors.black45, fontSize: 13, fontWeight: FontWeight.bold),
+            color: Colors.black45,
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+          ),
           filled: true,
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.white),
