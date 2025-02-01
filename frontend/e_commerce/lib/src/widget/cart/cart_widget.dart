@@ -64,9 +64,7 @@ class EmptyCard extends StatelessWidget {
               },
               child: const Text(
                 'Go to Home',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+                style: TextStyle(fontSize: 20),
               ),
             ),
           ),

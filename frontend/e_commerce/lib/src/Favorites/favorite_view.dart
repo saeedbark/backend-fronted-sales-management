@@ -15,7 +15,6 @@ class FavoritesScreen extends StatelessWidget {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
                   Icons.favorite_outline,
@@ -70,18 +69,14 @@ class FavoritesScreen extends StatelessWidget {
             Card(
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: AspectRatio(
                 aspectRatio: 1,
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.network(image, fit: BoxFit.cover),
               ),
             ),
-            const SizedBox(
-              width: 20,
-            ),
+            const SizedBox(width: 20),
             Expanded(
               flex: 10,
               child: Column(
@@ -96,9 +91,7 @@ class FavoritesScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Get.isDarkMode ? Colors.white : blackColor),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   Text(
                     price.toString(),
                     style: TextStyle(
@@ -115,10 +108,7 @@ class FavoritesScreen extends StatelessWidget {
                 onPressed: () {
                   controller.manageFavorites(productId);
                 },
-                icon: const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                ))
+                icon: const Icon(Icons.favorite, color: Colors.red))
           ],
         ),
       ),

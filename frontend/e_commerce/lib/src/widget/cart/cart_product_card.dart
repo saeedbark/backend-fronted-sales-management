@@ -8,12 +8,12 @@ class CartProductCard extends StatelessWidget {
   final ProductModels productModels;
   final int index;
   final int quantity;
-  CartProductCard(
-      {Key? key,
-      required this.productModels,
-      required this.index,
-      required this.quantity})
-      : super(key: key);
+  CartProductCard({
+    Key? key,
+    required this.productModels,
+    required this.index,
+    required this.quantity,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,11 @@ class CartProductCard extends StatelessWidget {
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
-          color: Get.isDarkMode
-              ? pinkColor.withOpacity(0.5)
-              : mainColor.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20)),
+        color: Get.isDarkMode
+            ? pinkColor.withOpacity(0.5)
+            : mainColor.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         children: [
           Container(
@@ -34,19 +35,16 @@ class CartProductCard extends StatelessWidget {
             height: 140,
             width: 100,
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(25),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    productModels.image,
-                  ),
-                  //fit: BoxFit.cover,
-                  //
-                )),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(25),
+              image: DecorationImage(
+                image: NetworkImage(
+                  productModels.image,
+                ),
+              ),
+            ),
           ),
-          const SizedBox(
-            width: 15,
-          ),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,10 +53,11 @@ class CartProductCard extends StatelessWidget {
                 Text(
                   productModels.title,
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      overflow: TextOverflow.ellipsis,
-                      color: Get.isDarkMode ? Colors.white : blackColor),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -107,13 +106,14 @@ class CartProductCard extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                    onPressed: () {
-                      controller.removeProductFromCart(productModels);
-                    },
-                    icon: Icon(
-                      Icons.delete,
-                      color: Get.isDarkMode ? Colors.grey : Colors.red,
-                    ))
+                  onPressed: () {
+                    controller.removeProductFromCart(productModels);
+                  },
+                  icon: Icon(
+                    Icons.delete,
+                    color: Get.isDarkMode ? Colors.grey : Colors.red,
+                  ),
+                )
               ],
             ),
           ),

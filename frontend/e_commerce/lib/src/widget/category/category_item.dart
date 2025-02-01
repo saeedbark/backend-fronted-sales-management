@@ -13,53 +13,53 @@ import 'package:get/get.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key});
-  @override 
+  @override
   Widget build(BuildContext context) {
-    
     final controller = Get.put(ProductController());
     final categoryController = Get.put(CategoryController());
     final cartcontroller = Get.put(CartController());
 
     return Scaffold(
-        backgroundColor: context.theme.scaffoldBackgroundColor,
-        appBar: AppBar(
-          title: const Text('Category Item'),
-          actions: [
-            Obx(
-              () {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
-                  child: badge.Badge(
-                    position: BadgePosition.topEnd(top: 0, end: 3),
-                    badgeContent: cartcontroller.quantity() > 0
-                        ? Text(
-                            cartcontroller.quantity().toString(),
-                            style: const TextStyle(color: Colors.white),
-                          )
-                        : null,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartView(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ),
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        title: const Text('Category Item'),
+        actions: [
+          Obx(
+            () {
+              return Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: badge.Badge(
+                  position: BadgePosition.topEnd(top: 0, end: 3),
+                  badgeContent: cartcontroller.quantity() > 0
+                      ? Text(
+                          cartcontroller.quantity().toString(),
+                          style: const TextStyle(color: Colors.white),
+                        )
+                      : null,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CartView(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.shopping_cart,
+                      color: Colors.white,
                     ),
                   ),
-                );
-              },
-            ),
-          ],
-          centerTitle: true,
-          backgroundColor: Get.isDarkMode ? Colors.black : mainColor,
-        ),
-        body: Obx(() {
+                ),
+              );
+            },
+          ),
+        ],
+        centerTitle: true,
+        backgroundColor: Get.isDarkMode ? Colors.black : mainColor,
+      ),
+      body: Obx(
+        () {
           if (categoryController.isAllCategoryLoading.value) {
             return Center(
               child: CircularProgressIndicator(
@@ -68,32 +68,36 @@ class CategoryItem extends StatelessWidget {
             );
           } else {
             return GridView.builder(
-                itemCount: categoryController.categoryList.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  childAspectRatio: 0.8,
-                  mainAxisSpacing: 9,
-                  crossAxisSpacing: 6,
-                  maxCrossAxisExtent: 300,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return buildCardItem(
-                    image: categoryController.categoryList[index].image,
-                    price: categoryController.categoryList[index].price,
-                    rating:
-                        categoryController.categoryList[index].rating?.rate ??
-                            3.0,
-                    productId: categoryController.categoryList[index].id,
-                    productModels: categoryController.categoryList[index],
-                    onTap: () {
-                      Get.to(() => ProductDetailsView(
-                            productModels: controller.productList[index],
-                          ));
-                    },
-                    //controller.productList[index]
-                  );
-                });
+              itemCount: categoryController.categoryList.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                childAspectRatio: 0.8,
+                mainAxisSpacing: 9,
+                crossAxisSpacing: 6,
+                maxCrossAxisExtent: 300,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return buildCardItem(
+                  image: categoryController.categoryList[index].image,
+                  price: categoryController.categoryList[index].price,
+                  rating: categoryController.categoryList[index].rating?.rate ??
+                      3.0,
+                  productId: categoryController.categoryList[index].id,
+                  productModels: categoryController.categoryList[index],
+                  onTap: () {
+                    Get.to(
+                      () => ProductDetailsView(
+                        productModels: controller.productList[index],
+                      ),
+                    );
+                  },
+                  //controller.productList[index]
+                );
+              },
+            );
           }
-        }));
+        },
+      ),
+    );
   }
 
   Widget buildCardItem({
@@ -103,9 +107,7 @@ class CategoryItem extends StatelessWidget {
     required int productId,
     required ProductModels productModels,
     required Function() onTap,
-  }
-      //ProductModels model
-      ) {
+  }) {
     final controller = Get.put(ProductController());
     final cartcontroller = Get.put(CartController());
 
@@ -171,12 +173,9 @@ class CategoryItem extends StatelessWidget {
                 ),
                 child: Image.network(
                   image,
-                  // fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -185,7 +184,7 @@ class CategoryItem extends StatelessWidget {
                     child: Text(
                       price.toString(),
                       style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
+                          color: Colors.black, fontWeight: FontWeight.bold,),
                     ),
                   ),
                   Padding(

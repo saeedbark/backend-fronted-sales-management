@@ -27,16 +27,15 @@ class CartTotal extends StatelessWidget {
               Text(
                 controller.total.toString(),
                 style: TextStyle(
-                    fontSize: 20,
-                    color: Get.isDarkMode ? Colors.white : blackColor,
-                    height: 1.5,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 20,
+                  color: Get.isDarkMode ? Colors.white : blackColor,
+                  height: 1.5,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
-          const SizedBox(
-            width: 20,
-          ),
+          const SizedBox(width: 20),
           Expanded(
             child: SizedBox(
               height: 60,
@@ -50,15 +49,13 @@ class CartTotal extends StatelessWidget {
                 },
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       'Check Out',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
+                    SizedBox(width: 20),
                     Icon(Icons.shopping_cart)
                   ],
                 ),
