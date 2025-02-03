@@ -3,6 +3,8 @@ import 'package:badges/badges.dart';
 import 'package:e_commerce/src/cart/cart_controller.dart';
 import 'package:e_commerce/src/cart/cart_view.dart';
 import 'package:e_commerce/src/layout/layout_controller.dart';
+import 'package:e_commerce/src/notification/notification_controller.dart';
+import 'package:e_commerce/src/notification/notification_view.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart' hide Badge;
@@ -44,6 +46,28 @@ class MainView extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: badge.Badge(
+                    position: BadgePosition.topEnd(top: 0, end: 3),
+                    badgeContent: cartController.quantity() > 0
+                        ? Text(
+                            Get.put(NotificationController())
+                                .notifications
+                                .length
+                                .toString(),
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        : null,
+                    child: IconButton(
+                      onPressed: () => Get.to(() => const NotificationView()),
+                      icon: const Icon(
+                        Icons.notification_add_sharp,
                         color: Colors.white,
                       ),
                     ),

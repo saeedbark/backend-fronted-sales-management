@@ -24,10 +24,14 @@ class CartController extends GetxController {
 
     ProductController productController = Get.find<ProductController>();
 
+    if (productController.productList.isEmpty) {
+      await productController.getProducts();
+    }
+
     for (String itemJson in savedCartItems) {
       try {
         CartItem cartItem = CartItem.fromJson(jsonDecode(itemJson));
-        ProductModels? product = productController.productList.firstWhereOrNull(
+        final product = productController.productList.firstWhereOrNull(
           (p) => p.id == cartItem.productId,
         );
         if (product != null) {
@@ -63,7 +67,6 @@ class CartController extends GetxController {
       productsMap[productModels] = 1;
     }
     saveCart();
-    // Update totals or other logic
   }
 
   void removeProductFromCart(ProductModels productModels) {
@@ -105,10 +108,7 @@ class CartController extends GetxController {
     if (productsMap.isEmpty) {
       return 0;
     } else {
-      return productsMap.entries
-          .map((e) => e.value)
-          .toList()
-          .reduce((value, element) => value + element);
+      return productsMap.entries.length;
     }
   }
 

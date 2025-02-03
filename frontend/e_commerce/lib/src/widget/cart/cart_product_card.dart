@@ -59,7 +59,7 @@ class CartProductCard extends StatelessWidget {
                     color: Get.isDarkMode ? Colors.white : blackColor,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Text(
                   controller.productSubTotal[index].toString(),
                   style: TextStyle(
@@ -107,8 +107,8 @@ class CartProductCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    controller.removeProductFromCart(productModels);
-                  },
+                    controller.removeOneProduct(productModels);
+                  },  
                   icon: Icon(
                     Icons.delete,
                     color: Get.isDarkMode ? Colors.grey : Colors.red,
