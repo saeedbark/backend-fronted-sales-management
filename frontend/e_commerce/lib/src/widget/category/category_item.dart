@@ -108,8 +108,8 @@ class CategoryItem extends StatelessWidget {
     required ProductModels productModels,
     required Function() onTap,
   }) {
-    final controller = Get.put(ProductController());
-    final cartcontroller = Get.put(CartController());
+    final controller = Get.find<ProductController>();
+    final cartcontroller = Get.find<CartController>();
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -171,9 +171,7 @@ class CategoryItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
-                child: Image.network(
-                  image,
-                ),
+                child: Image.network(image),
               ),
               const SizedBox(height: 5),
               Row(
@@ -184,7 +182,9 @@ class CategoryItem extends StatelessWidget {
                     child: Text(
                       price.toString(),
                       style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold,),
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Padding(
