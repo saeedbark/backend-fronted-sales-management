@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'notification_model.dart';
 
 class NotificationService extends GetxService {
-  static const String _baseUrl = 'http://127.0.0.1:8000/';
+  static const String _baseUrl = 'http://192.168.52.1:8000/';
 
   Future<List<NotificationModel>> fetchOverdueNotifications(
     List<CartItem> cartItems,
