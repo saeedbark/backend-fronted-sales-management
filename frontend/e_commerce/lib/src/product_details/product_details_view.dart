@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  final  ProductModels productModels;
+  final ProductModels productModels;
 
   const ProductDetailsView({super.key, required this.productModels});
 
@@ -19,16 +19,16 @@ class ProductDetailsView extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ImageSlider(
-                imageUrl: productModels.image
-              ),
+              // ImageSlider(
+              //   imageUrl: productModels.image
+              // ),
               ClothesInfo(
                 title: productModels.title,
                 producId: productModels.id,
-                rate: productModels.rating?.rate ??3.0,
-                description: productModels.description??'descr',
+                rate: productModels.rating?.rate ?? 3.0,
+                description: productModels.description ?? 'descr',
               ),
-             const SizeList(),
+              const SizeList(),
               AddCart(
                 price: productModels.price,
                 productModels: productModels,

@@ -39,9 +39,10 @@ class LogOutWidget extends StatelessWidget {
             },
             onConfirm: () {
               SharedPreferencesHelper.remove('token');
+              SharedPreferencesHelper.remove('code');
               Navigator.push(
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute( 
                   builder: (context) => const LoginView(),
                 ),
               );
@@ -65,9 +66,7 @@ class LogOutWidget extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(
-              width: 20
-            ),
+            const SizedBox(width: 20),
             TextUtils(
               fontSize: 22,
               fontWeight: FontWeight.bold,

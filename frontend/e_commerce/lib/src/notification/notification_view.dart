@@ -1,8 +1,10 @@
 import 'package:e_commerce/src/notification/notification_controller.dart';
-import 'package:e_commerce/src/notification/notification_model.dart';
+import 'package:e_commerce/src/widget/notification/empty.dart';
+import 'package:e_commerce/src/widget/notification/error.dart';
+import 'package:e_commerce/src/widget/notification/notification_card.dart';
+import 'package:e_commerce/src/widget/notification/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -41,25 +43,26 @@ class NotificationView extends StatelessWidget {
                       ),
                     ),
                     Center(
-                      child: Obx(() => Text(
-                            '${controller.notifications.length} Pending',
-                            style: theme.textTheme.headlineMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                const Shadow(
-                                  blurRadius: 10,
-                                  color: Colors.black54,
-                                )
-                              ],
-                            ),
-                          ).animate().fadeIn().scale()),
+                      child: Obx(
+                        () => Text(
+                          '${controller.notifications.length} Pending',
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              const Shadow(
+                                blurRadius: 10,
+                                color: Colors.black54,
+                              )
+                            ],
+                          ),
+                        ).animate().fadeIn().scale(),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            pinned: true,
             actions: [
               IconButton(
                 icon: const Icon(Icons.filter_list_rounded),
@@ -71,56 +74,18 @@ class NotificationView extends StatelessWidget {
             if (controller.isLoading.value) {
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => _buildShimmerLoader(),
+                  (context, index) => const ShimmerLoader(),
                   childCount: 5,
                 ),
               );
             }
 
             if (controller.errorMessage.value.isNotEmpty) {
-              return SliverFillRemaining(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Lottie.asset(
-                        'assets/animations/error.json',
-                        height: 150,
-                      ),
-                      Text(
-                        controller.errorMessage.value,
-                        style: theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      ElevatedButton.icon(
-                        icon: const Icon(Icons.refresh),
-                        label: const Text('Try Again'),
-                        onPressed: controller.loadNotifications,
-                      ),
-                    ],
-                  ),
-                ),
-              );
+              return ErrorNotification(controller: controller);
             }
 
             if (controller.notifications.isEmpty) {
-              return SliverFillRemaining(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Lottie.asset(
-                      'assets/animations/empty.json',
-                      height: 200,
-                    ),
-                    Text(
-                      'All caught up! 🎉',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        color: theme.colorScheme.onBackground,
-                      ),
-                    ),
-                  ],
-                ),
-              );
+              return const EmptyNotification();
             }
 
             return AnimationLimiter(
@@ -130,11 +95,11 @@ class NotificationView extends StatelessWidget {
                     final notification = controller.notifications[index];
                     return AnimationConfiguration.staggeredList(
                       position: index,
-                      duration: const Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 2000),
                       child: SlideAnimation(
-                        verticalOffset: 50.0,
+                        verticalOffset: 200.0,
                         child: FadeInAnimation(
-                          child: _NotificationCard(
+                          child: NotificationCard(
                             notification: notification,
                             onDismiss: () => controller.removeNotification(
                               notification.productId,
@@ -154,34 +119,11 @@ class NotificationView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: theme.primaryColor,
         child: const Icon(Icons.cleaning_services_rounded),
-        onPressed: () => {},
-      ).animate().scale(delay: 300.ms),
-    );
-  }
-
-  Widget _buildShimmerLoader() {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          color: Get.isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(20),
-        ),
+        onPressed: () {
+          confirmRemoveAllNotifications(context, controller);
+        },
       ),
-    )
-        .animate(
-          onPlay: (controller) => controller.repeat(),
-        )
-        .shimmer(
-          duration: 1000.ms,
-          delay: 300.ms,
-          color: Get.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade200,
-        )
-        .fade(
-          duration: 1000.ms,
-          curve: Curves.easeInOut,
-        );
+    );
   }
 
   void _showFilterDialog(BuildContext context) {
@@ -189,7 +131,7 @@ class NotificationView extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Filter Notifications'),
-        content: Column(
+        content: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Add filter options here
@@ -206,167 +148,159 @@ class NotificationView extends StatelessWidget {
   }
 }
 
-class _NotificationCard extends StatelessWidget {
-  final NotificationModel notification;
-  final VoidCallback onDismiss;
-  const _NotificationCard({
-    required this.notification,
-    required this.onDismiss,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final daysPassed = notification.daysSinceAdded;
-
-    return Dismissible(
-      key: Key(notification.productId.toString()),
-      direction: DismissDirection.endToStart,
-      background: _buildDismissibleBackground(),
-      onDismissed: (direction) => onDismiss(),
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: theme.dividerColor.withOpacity(0.1),
-            width: 1,
-          ),
+void confirmRemoveAllNotifications(
+  BuildContext context,
+  NotificationController controller,
+) {
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 10,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Lottie.asset(
+              'assets/animations/delete_confirmation.json',
+              height: 100,
+              repeat: false,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Delete All Notifications',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.redAccent,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Are you sure you want to delete all notifications? This action cannot be undone.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey.shade600,
+                  ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.grey.shade400),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                  ),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.removeAllNotification();
+                    Navigator.pop(context);
+                    _showDeleteSuccess(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                  ),
+                  child: const Text(
+                    'Delete',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(12),
-            border: Border(
-              left: BorderSide(
-                color: _getUrgencyColor(daysPassed),
-                width: 4,
+      ),
+    ),
+  );
+}
+
+void _showDeleteSuccess(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 10,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Lottie.asset(
+              'assets/animations/delete.json',
+              height: 100,
+              repeat: false,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Success!',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'All notifications have been deleted.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey.shade600,
+                  ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              child: const Text(
+                'Close',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          child: ListTile(
-            contentPadding: const EdgeInsets.all(16),
-            leading: _buildProductIcon(),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Product Name', // Add product name to your model
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.onSurface,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.calendar_today,
-                      size: 14,
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      _formatDate(notification.dateAdded),
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.8),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                _buildUrgencyBadge(daysPassed),
-                Text(
-                  '\$${notification.price.toStringAsFixed(2)}',
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
-    );
-  }
-
-  Widget _buildProductIcon() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: _getUrgencyColor(notification.daysSinceAdded).withOpacity(0.1),
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        Icons.shopping_cart,
-        color: _getUrgencyColor(notification.daysSinceAdded),
-        size: 20,
-      ),
-    );
-  }
-
-  Widget _buildUrgencyBadge(int days) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: _getUrgencyColor(days).withOpacity(0.1),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.timelapse,
-            size: 14,
-            color: _getUrgencyColor(days),
-          ),
-          const SizedBox(width: 4),
-          Text(
-            '${days}d',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: _getUrgencyColor(days),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Color _getUrgencyColor(int days) {
-    if (days > 7) return Colors.redAccent;
-    if (days > 3) return Colors.orange;
-    return Colors.blueAccent;
-  }
-
-  String _formatDate(DateTime date) {
-    return DateFormat('MMM dd, yyyy • HH:mm').format(date);
-  }
-
-  Widget _buildDismissibleBackground() {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.red.shade100,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      alignment: Alignment.centerRight,
-      padding: const EdgeInsets.only(right: 20),
-      child: Icon(
-        Icons.delete_forever_rounded,
-        color: Colors.red.shade600,
-        size: 32,
-      ),
-    );
-  }
+    ),
+  );
 }

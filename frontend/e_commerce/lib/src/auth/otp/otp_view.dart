@@ -116,8 +116,13 @@ class OtpView extends StatelessWidget {
   }
 
   // Build OTP Verification
-  Widget _buildOtpVerification(BuildContext context, OtpController controller,
-      PinTheme defaultPinTheme, Color fillColor, Color focusedBorderColor) {
+  Widget _buildOtpVerification(
+    BuildContext context,
+    OtpController controller,
+    PinTheme defaultPinTheme,
+    Color fillColor,
+    Color focusedBorderColor,
+  ) {
     return Form(
       key: controller.otpFormKey,
       child: Column(
