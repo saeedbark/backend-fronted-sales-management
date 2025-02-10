@@ -16,7 +16,9 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<NotificationController>();
     final theme = Theme.of(context);
+      //  final screenHeight = MediaQuery.of(context).size.height;
 
+    
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -80,12 +82,12 @@ class NotificationView extends StatelessWidget {
               );
             }
 
-            if (controller.errorMessage.value.isNotEmpty) {
-              return ErrorNotification(controller: controller);
-            }
-
             if (controller.notifications.isEmpty) {
               return const EmptyNotification();
+            }
+
+            if (controller.errorMessage.value.isNotEmpty) {
+              return ErrorNotification(controller: controller);
             }
 
             return AnimationLimiter(

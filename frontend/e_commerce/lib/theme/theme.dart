@@ -8,7 +8,7 @@ const Color logOutSettting = Color(0xff5f95ef);
 
 
 
-class ThemeApp {
+class ThemeApp { 
   static final light = ThemeData(
             primaryColor: mainColor,
     brightness: Brightness.light,

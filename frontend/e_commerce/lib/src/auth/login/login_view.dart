@@ -104,18 +104,19 @@ class LoginView extends StatelessWidget {
                                     size: 30,
                                   ),
                             suffixIcon: IconButton(
-                                onPressed: () {
-                                  controller.visibilty();
-                                },
-                                icon: controller.isVisibilty
-                                    ? const Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.black,
-                                      )
-                                    : const Icon(
-                                        Icons.visibility,
-                                        color: Colors.black,
-                                      ),),
+                              onPressed: () {
+                                controller.visibilty();
+                              },
+                              icon: controller.isVisibilty
+                                  ? const Icon(
+                                      Icons.visibility_off,
+                                      color: Colors.black,
+                                    )
+                                  : const Icon(
+                                      Icons.visibility,
+                                      color: Colors.black,
+                                    ),
+                            ),
                             text: 'Password',
                             type: TextInputType.visiblePassword,
                             validator: (value) {
@@ -146,42 +147,14 @@ class LoginView extends StatelessWidget {
                         ),
                         GetBuilder<LoginController>(builder: (_) {
                           return AuthButton(
-                            onpress: () =>
-                               controller.login(context),
-                                
-                            
+                            onpress: () => controller.login(context),
                             text: 'LOG IN',
                           );
                         }),
                         const SizedBox(
                           height: 10,
                         ),
-                        TextUtils(
-                            fontSize: 22,
-                            fontWeight: FontWeight.normal,
-                            text: 'OR',
-                            color: Get.isDarkMode ? Colors.white : Colors.black,
-                            underline: TextDecoration.none),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GetBuilder<LoginController>(builder: (_) {
-                              return InkWell(
-                                onTap: () {
-                                  //controller.googleSignUpApp();
-                                },
-                                child: Image.asset(
-                                  'assets/images/google1.png',
-                                  height: 44,
-                                  width: 44,
-                                ),
-                              );
-                            })
-                          ],
-                        ),
+                       
                       ],
                     ),
                   ),
