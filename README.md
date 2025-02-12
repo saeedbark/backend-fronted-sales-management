@@ -75,38 +75,4 @@ This project is a fully functional **E-Commerce Application** built with **Flutt
      ```
 
 ### FastAPI Microservice
-1. **Navigate to the FastAPI directory**:
-   ```bash
-   cd fastapi-notifications
-   ```
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the FastAPI server**:
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-4. **Access the API docs**:
-   - Open your browser and go to `http://localhost:8000/docs` to view the Swagger UI.
-
----
-
-## API Endpoints (FastAPI Microservice)
-
-### Notifications
-- **Send Notification**:
-  ```
-  POST /notifications/
-  Body: { "user_id": 1, "message": "Your order has been shipped!" }
-  ```
-
-- **Get Notifications**:
-  ```
-  GET /notifications/{user_id}
-  ```
-
-- **Mark as Read**:
