@@ -45,30 +45,7 @@ This project is a fully functional **E-Commerce Application** built with **Flutt
 ## Project Structure
 
 ### Flutter App
-```
-lib/
-├── src/
-│   ├── controllers/       # GetX controllers
-│   ├── models/            # Data models
-│   ├── services/          # API services
-│   ├── views/             # UI screens
-│   ├── widgets/           # Reusable UI components
-│   ├── shared_pref/       # SharedPreferences helper
-│   ├── exceptions/        # Custom exceptions
-│   ├── routes/            # GoRouter configuration
-├── main.dart              # App entry point
-```
 
-### FastAPI Microservice
-```
-fastapi-notifications/
-├── app/
-│   ├── api/               # API endpoints
-│   ├── models/            # Database models
-│   ├── services/          # Business logic
-│   ├── utils/             # Helper functions
-├── main.py                # FastAPI app entry point
-```
 
 ---
 
