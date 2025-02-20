@@ -21,6 +21,7 @@ class LoginController extends GetxController {
   }
 
   Future<LoginModel?> login(BuildContext context) async {
+    if (!(formKey.currentState as FormState).validate()) return null;
     isLoading.value = true;
     try {
       final response = await LoginService().login(
@@ -30,14 +31,14 @@ class LoginController extends GetxController {
 
       isLoading.value = false;
 
-     // AppRoutes.router.go( AppRoutes.product);
-     Navigator.push(context, MaterialPageRoute(builder: (context) =>const OtpView()));
-
-    //  AppRoutes.router.go(AppRoutes.otp);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const OtpView()),
+      );
 
       return LoginModel.fromJson(response['data']);
     } on AppException catch (e) {
-    //  Get.snackbar('Error', e.toString());
+      //  Get.snackbar('Error', e.toString());
       isLoading.value = false;
 
       return null;

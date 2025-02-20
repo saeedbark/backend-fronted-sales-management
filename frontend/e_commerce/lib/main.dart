@@ -10,24 +10,41 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
   final String? token = await SharedPreferencesHelper.getString('token');
+
+  final String? otp = await SharedPreferencesHelper.getString('code');
+
   final String? lang = await SharedPreferencesHelper.getString('lang');
 
   ThemeController themeController = ThemeController();
+  
   ThemeMode themeMode = await themeController.themDataGet;
 
   runApp(
-    MyApp(token: token, lang: lang, themeMode: themeMode),
+    MyApp(
+      token: token,
+      otp: otp,
+      lang: lang,
+      themeMode: themeMode,
+    ),
   );
 }
 
 class MyApp extends StatelessWidget {
   final String? token;
+  final String? otp;
   final String? lang;
   final ThemeMode themeMode;
 
-  const MyApp({Key? key, this.token, this.lang, required this.themeMode})
-      : super(key: key);
+  const MyApp({
+    Key? key,
+    this.token,
+    this.lang,
+    this.otp,
+    required this.themeMode,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +58,9 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeApp.dark,
       themeMode: themeMode,
       getPages: AppRoute.router,
-      home: token == null ? const LoginView() : const MainView(),
+      home: token != null && otp != null && otp!.isNotEmpty
+          ? const MainView()
+          : const LoginView(),
     );
   }
 }

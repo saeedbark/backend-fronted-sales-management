@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63c42f12-1a48-41d6-841e-1a3f25e70865" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/backend-fronted-sales-management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend-fronted-sales-management.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/e_commerce/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/e_commerce/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/e_commerce/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/e_commerce/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/e_commerce/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/e_commerce/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/e_commerce/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/e_commerce/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +44,8 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/hp/Downloads/proxy",
+    "last_opened_file_path": "E:/flutter/bin/cache/dart-sdk",
+    "settings.editor.selected.configurable": "dart.settings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

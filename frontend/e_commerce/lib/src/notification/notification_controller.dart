@@ -32,8 +32,44 @@ class NotificationController extends GetxController {
             productId: 3,
             quantity: 1,
             dateAdded: DateTime.parse('2025-02-02T09:15:00'),
+            price: 100.0,
+          ),
+          CartItem(
+            productId: 4,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-02-04T09:15:00'),
+            price: 70.0,
+          ),
+          CartItem(
+            productId: 5,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-02-01T09:15:00'),
             price: 9.99,
-          )
+          ),
+          CartItem(
+            productId: 5,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-01-02T09:15:00'),
+            price: 999.0,
+          ),
+          CartItem(
+            productId: 3,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-02-02T09:15:00'),
+            price: 1000.0,
+          ),
+          CartItem(
+            productId: 7,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-01-02T09:15:00'),
+            price: 600.0,
+          ),
+          CartItem(
+            productId: 6,
+            quantity: 1,
+            dateAdded: DateTime.parse('2025-02-09T09:15:00'),
+            price: 700.5,
+          ),
         ],
       );
       this.notifications.assignAll(notifications);
@@ -47,5 +83,9 @@ class NotificationController extends GetxController {
 
   void removeNotification(int productId) {
     notifications.removeWhere((item) => item.productId == productId);
+  }
+
+  void removeAllNotification() {
+    notifications.clear();
   }
 }
