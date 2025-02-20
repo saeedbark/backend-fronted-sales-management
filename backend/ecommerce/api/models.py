@@ -1,5 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.crypto import get_random_string
+from django.utils import timezone
+from datetime import timedelta
+
+
 
 class User(AbstractUser):
     phone = models.CharField(max_length=15, null=True, blank=True)
@@ -25,8 +30,18 @@ class User(AbstractUser):
 
 
 
-    
-   
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    used = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = get_random_string(length=50)
+            self.expires_at = timezone.now() + timedelta(minutes=15)
+        super().save(*args, **kwargs)
     
 class Category(models.Model):
     name = models.CharField(max_length=255)

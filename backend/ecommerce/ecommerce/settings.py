@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load variables from .env file
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,13 +29,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@q1q*3(&wa82-d^%#9se0dvysa7p2w4lo6b4_7xu!6q$7%c5q@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # Change this temporarily to see detailed errors
 
 ALLOWED_HOSTS = [
    '*'
 ]
 
 AUTH_USER_MODEL = 'api.User'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'barksaeed951@gmail.com' # Your email
+EMAIL_HOST_PASSWORD = 'gzxdclunwlsgvxoh'  # App password
+DEFAULT_FROM_EMAIL = 'barksaeed951@gmail.com'
+
 
 
 
