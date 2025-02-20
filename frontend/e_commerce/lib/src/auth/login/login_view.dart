@@ -54,9 +54,7 @@ class LoginView extends StatelessWidget {
                             )
                           ],
                         ),
-                        const SizedBox(
-                          height: 50,
-                        ),
+                        const SizedBox(height: 50),
                         authTextFromField(
                           controller: controller.emailController,
                           obscureText: false,
@@ -145,16 +143,15 @@ class LoginView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        GetBuilder<LoginController>(builder: (_) {
-                          return AuthButton(
-                            onpress: () => controller.login(context),
-                            text: 'LOG IN',
-                          );
-                        }),
-                        const SizedBox(
-                          height: 10,
+                        GetBuilder<LoginController>(
+                          builder: (_) {
+                            return AuthButton(
+                              onpress: () => controller.login(context),
+                              text: 'LOG IN',
+                            );
+                          },
                         ),
-                       
+                        const SizedBox(height: 10),
                       ],
                     ),
                   ),

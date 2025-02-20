@@ -11,7 +11,6 @@ class NotificationService extends GetxService {
     List<CartItem> cartItems,
   ) async {
     try {
-      // Convert cart items to JSON
       final cartItemsJson = cartItems.map((item) => item.toJson()).toList();
 
       final response = await DioHelper().post(

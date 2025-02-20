@@ -5,7 +5,9 @@ import 'package:e_commerce/src/notification/notification_service.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
+
   final RxList<NotificationModel> notifications = <NotificationModel>[].obs;
+  
   final isLoading = false.obs;
   final errorMessage = ''.obs;
 

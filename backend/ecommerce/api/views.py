@@ -1,15 +1,23 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from django.core.mail import send_mail
+from django.conf import settings
 from rest_framework import status
-from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer,CartSerializer, PaymentSerializer
+from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer,CartSerializer, PaymentSerializer,PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
+from django.utils import timezone
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+
+
+
 
 
 from rest_framework.permissions import AllowAny
 
-from .models import Product,Category,Cart, CartItem, Product, Payment
+from .models import PasswordResetToken, User,Product,Category,Cart, CartItem, Product, Payment
 
 
 # Register View
@@ -45,8 +53,57 @@ class RegisterView(APIView):
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+class PasswordResetRequestView(APIView):
+    def post(self, request):
+        email = request.data.get('email')  # Get email from request
+        try:
+            user = User.objects.get(email=email)  # Check if user exists
+            
+            # Generate Reset Token
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))  # Encode User ID
+            
+            # Generate Password Reset Link
+            reset_link = f"http://yourfrontend.com/reset-password/\nID:{uid}\nToken:{token}/"
+            
+            # Send Email with Reset Link
+            send_mail(
+                "Password Reset Request",
+                f"Click the link below to reset your password:\n{reset_link}",
+                settings.EMAIL_HOST_USER,
+                [user.email],
+                fail_silently=False,
+            )
+            
+            return Response({"message": "Password reset link sent to your email"}, status=status.HTTP_200_OK)
 
+        except User.DoesNotExist:
+            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+class PasswordResetConfirmView(APIView):
+    def post(self, request, uidb64, token):
+        try:
+            # Decode UID
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = User.objects.get(pk=uid)
 
+            # Verify the Token
+            if not default_token_generator.check_token(user, token):
+                return Response({"error": "Invalid or expired token"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Update Password
+            new_password = request.data.get("new_password")
+            if not new_password:
+                return Response({"error": "New password is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+            user.set_password(new_password)
+            user.save()
+
+            return Response({"message": "Password reset successful"}, status=status.HTTP_200_OK)
+
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            return Response({"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST)
+
+        
 class Products(APIView):
     print('---------Products-------------')
     permission_classes = [IsAuthenticated]  # Require authentication

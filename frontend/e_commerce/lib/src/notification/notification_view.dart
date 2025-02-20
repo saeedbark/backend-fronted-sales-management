@@ -20,7 +20,7 @@ class NotificationView extends StatelessWidget {
 
     
     return Scaffold(
-      body: CustomScrollView(
+      body: CustomScrollView( 
         slivers: [
           SliverAppBar(
             expandedHeight: 200,
