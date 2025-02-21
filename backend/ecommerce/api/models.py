@@ -1,5 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.crypto import get_random_string
+from django.utils import timezone
+from datetime import timedelta
+from django.utils.timezone import now
+
 
 class User(AbstractUser):
     phone = models.CharField(max_length=15, null=True, blank=True)
@@ -26,7 +31,16 @@ class User(AbstractUser):
 
 
     
-   
+
+class PasswordResetOTP(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(default=now)
+
+    def is_expired(self):
+        # Expires in 10 minutes
+        return self.created_at + timedelta(minutes=10) < now()
+    
     
 class Category(models.Model):
     name = models.CharField(max_length=255)

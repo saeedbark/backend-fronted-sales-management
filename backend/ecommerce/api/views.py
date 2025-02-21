@@ -1,15 +1,23 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import random
 
 from rest_framework import status
 from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer, ProductSerializer,CategorySerializer,CartSerializer, PaymentSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.timezone import now
+
+
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 
 from rest_framework.permissions import AllowAny
 
-from .models import Product,Category,Cart, CartItem, Product, Payment
+from .models import Product,Category,Cart, CartItem, Product, Payment,User,PasswordResetOTP
 
 
 # Register View
@@ -44,7 +52,93 @@ class RegisterView(APIView):
 # Custom Login View (JWT Token)
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    
+class PasswordResetRequestView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        if not email:
+            return Response({"error": "Email is required."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = User.objects.get(email=email)  # Check if user exists
+            
+            # Generate a 6-digit OTP
+            otp = str(random.randint(100000, 999999))
 
+            # Save OTP in database with a timestamp
+            PasswordResetOTP.objects.update_or_create(
+                user=user,
+                defaults={"otp": otp, "created_at": now()}
+            )
+
+            # Send OTP via email
+            send_mail(
+                subject="Password Reset OTP",
+                message=f"Your password reset OTP is: {otp}\n"
+                        "This OTP is valid for 10 minutes.",
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[user.email],
+                fail_silently=False,
+            )
+
+            return Response({"message": "OTP sent to your email."}, status=status.HTTP_200_OK)
+
+        except User.DoesNotExist:
+            return Response({"error": "User with this email does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class VerifyOTPView(APIView):
+    def post(self, request):
+        email = request.data.get("email")
+        otp = request.data.get("otp")
+
+        if not email or not otp:
+            return Response({"error": "Email and OTP are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(email=email)
+            otp_record = PasswordResetOTP.objects.get(user=user, otp=otp)
+
+            # Check if OTP is expired
+            if otp_record.is_expired():
+                return Response({"error": "OTP has expired."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # If OTP is correct and not expired, return success
+            # Frontend can then redirect to a password reset page
+            return Response({"message": "OTP verified successfully."}, status=status.HTTP_200_OK)
+
+        except (User.DoesNotExist, PasswordResetOTP.DoesNotExist):
+            return Response({"error": "Invalid OTP or email."}, status=status.HTTP_400_BAD_REQUEST)
+
+class ResetPasswordView(APIView):
+    def post(self, request):
+        email = request.data.get("email")
+        new_password = request.data.get("new_password")
+        otp = request.data.get("otp")  # In case you want to re-check or ensure same OTP
+
+        if not email or not new_password or not otp:
+            return Response({"error": "Email, OTP, and new password are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = User.objects.get(email=email)
+            otp_record = PasswordResetOTP.objects.get(user=user, otp=otp)
+
+            # Double-check if OTP is expired (optional but recommended for security)
+            if otp_record.is_expired():
+                return Response({"error": "OTP has expired."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Set the new password
+            user.set_password(new_password)
+            user.save()
+
+            # Delete the OTP record to prevent reuse
+            otp_record.delete()
+
+            return Response({"message": "Password reset successfully."}, status=status.HTTP_200_OK)
+
+        except (User.DoesNotExist, PasswordResetOTP.DoesNotExist):
+            return Response({"error": "Invalid OTP or email."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Products(APIView):

@@ -1,4 +1,5 @@
 import 'package:e_commerce/constent/my_string.dart';
+import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/auth/login/login_controller.dart';
 import 'package:e_commerce/src/auth/register/register_view.dart';
 import 'package:e_commerce/src/widget/auth/auth_button.dart';
@@ -130,7 +131,9 @@ class LoginView extends StatelessWidget {
                         Align(
                           alignment: Alignment.bottomRight,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () => Get.toNamed(
+                              AppRoute.passwordResetRequest,
+                            ),
                             child: TextUtils(
                               fontSize: 20,
                               fontWeight: FontWeight.normal,

@@ -57,9 +57,8 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeApp.dark,
       themeMode: themeMode,
       getPages: AppRoute.router,
-      home: token != null && otp != null && otp!.isNotEmpty
-          ? const MainView()
-          : const LoginView(),
+      //&& otp != null && otp!.isNotEmpty
+      home: token != null ? const MainView() : const LoginView(),
     );
   }
 }
