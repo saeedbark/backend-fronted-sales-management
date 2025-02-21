@@ -120,7 +120,7 @@ class LoginView extends StatelessWidget {
                             text: 'Password',
                             type: TextInputType.visiblePassword,
                             validator: (value) {
-                              if (value.toString().length <= 8) {
+                              if (value.toString().length <= 5) {
                                 return 'Password should be longer or equal to 8 characters';
                               }
                               return null;
@@ -154,7 +154,6 @@ class LoginView extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                       
                       ],
                     ),
                   ),

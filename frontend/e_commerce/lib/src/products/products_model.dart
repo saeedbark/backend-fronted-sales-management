@@ -6,6 +6,7 @@ class ProductModels {
   final String? category;
   final String image;
   final Rating? rating;
+  final DateTime? dateAdded;
   ProductModels({
     required this.id,
     required this.title,
@@ -14,6 +15,7 @@ class ProductModels {
     this.category,
     required this.image,
     this.rating,
+    this.dateAdded,
   });
 
   factory ProductModels.fromJson(Map<String, dynamic> json) => ProductModels(

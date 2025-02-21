@@ -3,16 +3,19 @@ import 'package:e_commerce/src/products/products_model.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CartProductCard extends StatelessWidget {
   final ProductModels productModels;
   final int index;
   final int quantity;
+  final DateTime date;
   CartProductCard({
     Key? key,
     required this.productModels,
     required this.index,
     required this.quantity,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -59,6 +62,15 @@ class CartProductCard extends StatelessWidget {
                     color: Get.isDarkMode ? Colors.white : blackColor,
                   ),
                 ),
+                Text(
+                  DateFormat('yyyy-MM-dd – kk:mm').format(date),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                    color: Get.isDarkMode ? Colors.white : blackColor,
+                  ),
+                ),
                 const SizedBox(height: 10),
                 Text(
                   controller.productSubTotal[index].toString(),
@@ -67,7 +79,7 @@ class CartProductCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Get.isDarkMode ? Colors.white : blackColor,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -108,7 +120,7 @@ class CartProductCard extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     controller.removeOneProduct(productModels);
-                  },  
+                  },
                   icon: Icon(
                     Icons.delete,
                     color: Get.isDarkMode ? Colors.grey : Colors.red,
