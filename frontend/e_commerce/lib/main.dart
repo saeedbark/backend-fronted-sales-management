@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
   final String? token = await SharedPreferencesHelper.getString('token');
 
   final String? otp = await SharedPreferencesHelper.getString('code');
@@ -19,7 +18,7 @@ void main() async {
   final String? lang = await SharedPreferencesHelper.getString('lang');
 
   ThemeController themeController = ThemeController();
-  
+
   ThemeMode themeMode = await themeController.themDataGet;
 
   runApp(

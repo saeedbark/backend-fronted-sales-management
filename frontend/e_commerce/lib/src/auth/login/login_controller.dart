@@ -21,7 +21,7 @@ class LoginController extends GetxController {
   }
 
   Future<LoginModel?> login(BuildContext context) async {
-    if (!(formKey.currentState as FormState).validate()) return null;
+    // if (!(formKey.currentState as FormState).validate()) return null;
     isLoading.value = true;
     try {
       final response = await LoginService().login(

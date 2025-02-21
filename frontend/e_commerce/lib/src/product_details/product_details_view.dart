@@ -1,7 +1,6 @@
 import 'package:e_commerce/src/products/products_model.dart';
 import 'package:e_commerce/src/widget/productDetails/add_cart.dart';
 import 'package:e_commerce/src/widget/productDetails/cloths_info.dart';
-import 'package:e_commerce/src/widget/productDetails/image_slider.dart';
 import 'package:e_commerce/src/widget/productDetails/size_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,9 +18,15 @@ class ProductDetailsView extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // ImageSlider(
-              //   imageUrl: productModels.image
-              // ),
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(productModels.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               ClothesInfo(
                 title: productModels.title,
                 producId: productModels.id,

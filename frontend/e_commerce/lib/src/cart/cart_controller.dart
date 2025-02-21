@@ -6,16 +6,14 @@ import 'package:e_commerce/src/products/products_model.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
-  var productsMap = <ProductModels, int>{}.obs;
-  // ... other existing variables
+  var productsMap = <ProductModels, Map<String, dynamic>>{}
+      .obs; // تخزين `quantity` و `dateAdded`
 
   @override
   void onInit() {
     super.onInit();
     loadCart();
   }
-
-  List<String>? savedCartItems;
 
   Future<void> loadCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -28,6 +26,8 @@ class CartController extends GetxController {
       await productController.getProducts();
     }
 
+    productsMap.clear(); // تفريغ القائمة قبل إعادة تحميل البيانات
+
     for (String itemJson in savedCartItems) {
       try {
         CartItem cartItem = CartItem.fromJson(jsonDecode(itemJson));
@@ -35,7 +35,10 @@ class CartController extends GetxController {
           (p) => p.id == cartItem.productId,
         );
         if (product != null) {
-          productsMap[product] = cartItem.quantity;
+          productsMap[product] = {
+            'quantity': cartItem.quantity,
+            'dateAdded': cartItem.dateAdded,
+          };
         }
       } catch (e) {
         print('Error loading cart item: $e');
@@ -45,36 +48,35 @@ class CartController extends GetxController {
 
   Future<void> saveCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> cartItemsJson = [];
-
-    productsMap.forEach((product, quantity) {
-      CartItem cartItem = CartItem(
-        productId: product.id,
-        quantity: quantity,
-        dateAdded: DateTime.now(), // Update this with actual date if tracked
-        price: product.price,
-      );
-      cartItemsJson.add(jsonEncode(cartItem.toJson()));
-    });
-
+    List<String> cartItemsJson = productsMap.entries.map((entry) {
+      return jsonEncode({
+        'productId': entry.key.id,
+        'quantity': entry.value['quantity'],
+        'dateAdded': (entry.value['dateAdded'] as DateTime).toIso8601String(),
+        'price': entry.key.price,
+      });
+    }).toList();
     await prefs.setStringList('cartItems', cartItemsJson);
   }
 
-  void addProductToCart(ProductModels productModels) {
-    if (productsMap.containsKey(productModels)) {
-      productsMap[productModels] = productsMap[productModels]! + 1;
+  void addProductToCart(ProductModels product) {
+    if (productsMap.containsKey(product)) {
+      productsMap[product]!['quantity'] += 1;
     } else {
-      productsMap[productModels] = 1;
+      productsMap[product] = {
+        'quantity': 1,
+        'dateAdded': DateTime.now(),
+      };
     }
     saveCart();
   }
 
-  void removeProductFromCart(ProductModels productModels) {
-    if (productsMap.containsKey(productModels)) {
-      if (productsMap[productModels] == 1) {
-        productsMap.remove(productModels);
+  void removeProductFromCart(ProductModels product) {
+    if (productsMap.containsKey(product)) {
+      if (productsMap[product]!['quantity'] == 1) {
+        productsMap.remove(product);
       } else {
-        productsMap[productModels] = productsMap[productModels]! - 1;
+        productsMap[product]!['quantity'] -= 1;
       }
       saveCart();
     }
@@ -85,32 +87,24 @@ class CartController extends GetxController {
     saveCart();
   }
 
-  void removeOneProduct(ProductModels productModels) {
-    if (productsMap.containsKey(productModels)) {
-      productsMap.remove(productModels); // Remove the product entirely
-      saveCart(); // Save the updated cart to SharedPreferences
-    }
+  void removeOneProduct(ProductModels product) {
+    productsMap.remove(product);
+    saveCart();
   }
 
   List<double> get productSubTotal {
     return productsMap.entries.map((entry) {
-      return entry.key.price * entry.value; // Price × Quantity
+      return entry.key.price * entry.value['quantity'];
     }).toList();
   }
 
   double get total {
     return productsMap.entries.fold(0, (sum, entry) {
-      return sum + (entry.key.price * entry.value); // Sum of all subtotals
+      return sum + (entry.key.price * entry.value['quantity']);
     });
   }
 
   int quantity() {
-    if (productsMap.isEmpty) {
-      return 0;
-    } else {
-      return productsMap.entries.length;
-    }
+    return productsMap.isEmpty ? 0 : productsMap.length;
   }
-
-  // ... existing methods
 }

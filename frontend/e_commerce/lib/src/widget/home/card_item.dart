@@ -47,6 +47,7 @@ class CardItem extends StatelessWidget {
                             ? controller.productList[index]
                             : controller.searchList[index];
                         return buildCardItem(
+                          title: currentProduct.title,
                           image: currentProduct.image,
                           price: currentProduct.price,
                           rating: currentProduct.rating?.rate ?? 3.0,
@@ -75,6 +76,7 @@ class CardItem extends StatelessWidget {
   }
 
   Widget buildCardItem({
+    required String title,
     required String image,
     required double price,
     required double rating,
@@ -99,6 +101,7 @@ class CardItem extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +121,6 @@ class CardItem extends StatelessWidget {
                 Obx(() {
                   bool isInCart =
                       cartcontroller.productsMap.containsKey(productModels);
-
 
                   return IconButton(
                     onPressed: isInCart
@@ -146,9 +148,22 @@ class CardItem extends StatelessWidget {
                 child: Image.network(image),
               ),
             ),
-            const SizedBox(
-              height: 5,
+            const SizedBox(height: 5),
+            Container(
+              margin: const EdgeInsets.only(left: 12),
+              child: Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ),
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

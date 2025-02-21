@@ -1,4 +1,5 @@
 import 'package:e_commerce/network/app_exceptions.dart';
+import 'package:e_commerce/src/cart/cart_controller.dart';
 import 'package:e_commerce/src/cart/cart_model.dart';
 import 'package:e_commerce/src/notification/notification_model.dart';
 import 'package:e_commerce/src/notification/notification_service.dart';
@@ -19,58 +20,29 @@ class NotificationController extends GetxController {
     try {
       isLoading(true);
       errorMessage('');
+      CartController cartController = Get.find<CartController>();
+
+      if (cartController.productsMap.keys.isEmpty) {
+        await cartController.loadCart();
+      }
+
+      List<CartItem> cartItems = cartController.productsMap.entries.map(
+        (entry) {
+          final product = entry.key;
+          final quantity = entry.value;
+          return CartItem(
+            productId: product.id,
+            quantity: quantity['quantity'],
+            dateAdded: quantity[
+                'dateAdded'], // يمكنك استبدال هذا بتاريخ آخر إذا كنت تخزنه
+            price: product.price,
+          );
+        },
+      ).toList();
+
       final notifications =
           await NotificationService().fetchOverdueNotifications(
-        [
-          CartItem(
-            productId: 1,
-            quantity: 2,
-            dateAdded: DateTime.parse('2024-02-20T10:00:00'),
-            price: 19.99,
-          ),
-          CartItem(
-            productId: 3,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-02-02T09:15:00'),
-            price: 100.0,
-          ),
-          CartItem(
-            productId: 4,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-02-04T09:15:00'),
-            price: 70.0,
-          ),
-          CartItem(
-            productId: 5,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-02-01T09:15:00'),
-            price: 9.99,
-          ),
-          CartItem(
-            productId: 5,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-01-02T09:15:00'),
-            price: 999.0,
-          ),
-          CartItem(
-            productId: 3,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-02-02T09:15:00'),
-            price: 1000.0,
-          ),
-          CartItem(
-            productId: 7,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-01-02T09:15:00'),
-            price: 600.0,
-          ),
-          CartItem(
-            productId: 6,
-            quantity: 1,
-            dateAdded: DateTime.parse('2025-02-09T09:15:00'),
-            price: 700.5,
-          ),
-        ],
+        cartItems,
       );
       this.notifications.assignAll(notifications);
     } on AppException catch (e) {

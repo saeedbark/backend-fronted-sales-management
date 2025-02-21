@@ -1,4 +1,3 @@
-
 import 'package:e_commerce/src/cart/cart_controller.dart';
 import 'package:e_commerce/src/widget/cart/cart_product_card.dart';
 import 'package:e_commerce/src/widget/cart/cart_total.dart';
@@ -8,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartView extends StatelessWidget {
- const CartView({super.key});
+  const CartView({super.key});
   @override
   Widget build(BuildContext context) {
-  final controller = Get.put(CartController());
+    final controller = Get.put(CartController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -43,8 +42,10 @@ class CartView extends StatelessWidget {
                           productModels:
                               controller.productsMap.keys.toList()[index],
                           index: index,
-                          quantity:
-                              controller.productsMap.values.toList()[index],
+                          quantity: controller.productsMap.values
+                              .toList()[index]['quantity'],
+                          date : controller.productsMap.values.toList()[index]
+                              ['dateAdded'],
                         ),
                         separatorBuilder: (context, index) => const SizedBox(
                           height: 20,
@@ -52,8 +53,8 @@ class CartView extends StatelessWidget {
                         itemCount: controller.productsMap.length,
                       ),
                     ),
-                   const Padding(
-                      padding:  EdgeInsets.all(20.0),
+                    const Padding(
+                      padding: EdgeInsets.all(20.0),
                       child: CartTotal(),
                     ),
                   ],

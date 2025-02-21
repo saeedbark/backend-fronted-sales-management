@@ -24,9 +24,9 @@ async def check_overdue_items(items: List[CartItemRequest]):
     for item in items:
         added_date = datetime.fromisoformat(item.dateAdded).astimezone(timezone.utc)
         time_diff = current_time - added_date
-        days_diff = time_diff.days  # Get total days difference
+        days_diff = time_diff.days   # Get total days difference
         
-        if time_diff > timedelta(days=1):
+        if time_diff > timedelta(minutes=5):
             overdue_items.append({
                 "productId": item.productId,
                 "original_quantity": item.quantity,
