@@ -1,3 +1,6 @@
+import 'package:e_commerce/src/auth/forget_password/forget_password_view/password_reset_request_view.dart';
+import 'package:e_commerce/src/auth/forget_password/forget_password_view/reset_password_view.dart';
+import 'package:e_commerce/src/auth/forget_password/forget_password_view/verify_otp_view.dart';
 import 'package:e_commerce/src/auth/otp/otp_view.dart';
 import 'package:e_commerce/src/cart/cart_view.dart';
 import 'package:e_commerce/src/layout/layout_view.dart';
@@ -12,6 +15,9 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 class AppRoute {
   static const String login = '/login';
   static const String register = '/register';
+  static const String passwordResetRequest = '/passwordResetRequest';
+  static const String verifyOtp = '/verifyOtp';
+  static const String resetPassword = '/resetPassword';
   static const String main = '/main';
   static const String product = '/products';
   static const String productDetails = '/productDetails';
@@ -32,6 +38,22 @@ class AppRoute {
       page: () => const RegisterView(),
     ),
     GetPage(
+      name: AppRoute.otp,
+      page: () => const OtpView(),
+    ),
+    GetPage(
+      name: AppRoute.passwordResetRequest,
+      page: () => const PasswordResetRequestView(),
+    ),
+    GetPage(
+      name: AppRoute.verifyOtp,
+      page: () => const VerifyOtpView(),
+    ),
+    GetPage(
+      name: AppRoute.resetPassword,
+      page: () => const ResetPasswordView(),
+    ),
+        GetPage(
       name: AppRoute.otp,
       page: () => const OtpView(),
     ),

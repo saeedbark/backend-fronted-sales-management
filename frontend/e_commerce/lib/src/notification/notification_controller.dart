@@ -33,8 +33,7 @@ class NotificationController extends GetxController {
           return CartItem(
             productId: product.id,
             quantity: quantity['quantity'],
-            dateAdded: quantity[
-                'dateAdded'], // يمكنك استبدال هذا بتاريخ آخر إذا كنت تخزنه
+            dateAdded: quantity['dateAdded'],
             price: product.price,
           );
         },
