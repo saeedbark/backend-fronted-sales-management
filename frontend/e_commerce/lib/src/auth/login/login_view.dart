@@ -1,4 +1,3 @@
-import 'package:e_commerce/constent/my_string.dart';
 import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/auth/login/login_controller.dart';
 import 'package:e_commerce/src/auth/register/register_view.dart';
@@ -6,6 +5,7 @@ import 'package:e_commerce/src/widget/auth/auth_button.dart';
 import 'package:e_commerce/src/widget/auth/auth_text_field_form.dart';
 import 'package:e_commerce/src/widget/auth/container_under.dart';
 import 'package:e_commerce/src/widget/text_util.dart';
+import 'package:e_commerce/src/widget/validation.dart';
 import 'package:e_commerce/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +19,6 @@ class LoginView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
-        appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? blackColor : Colors.white,
-          elevation: 0,
-        ),
         body: SingleChildScrollView(
           child: Form(
             key: controller.formKey,
@@ -58,7 +54,7 @@ class LoginView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        authTextFromField(
+                        AuthTextFormField(
                           controller: controller.emailController,
                           obscureText: false,
                           cursorColor: Colors.black,
@@ -78,16 +74,12 @@ class LoginView extends StatelessWidget {
                           suffixIcon: const Text(""),
                           text: 'Email',
                           type: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (!RegExp(validationEmail).hasMatch(value)) {
-                              return 'Enter valid email';
-                            }
-                            return null;
-                          },
+                          validator: (value) =>
+                              ValidationUtils.validateEmail(value.toString()),
                         ),
                         const SizedBox(height: 20),
                         GetBuilder<LoginController>(builder: (_) {
-                          return authTextFromField(
+                          return AuthTextFormField(
                             controller: controller.passwordController,
                             obscureText: controller.isVisibilty ? false : true,
                             cursorColor: Colors.black,
@@ -120,12 +112,9 @@ class LoginView extends StatelessWidget {
                             ),
                             text: 'Password',
                             type: TextInputType.visiblePassword,
-                            validator: (value) {
-                              if (value.toString().length <= 5) {
-                                return 'Password should be longer or equal to 8 characters';
-                              }
-                              return null;
-                            },
+                            validator: (value) =>
+                                ValidationUtils.validatePassword(
+                                    value.toString()),
                           );
                         }),
                         Align(
@@ -148,12 +137,10 @@ class LoginView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        GetBuilder<LoginController>(builder: (_) {
-                          return AuthButton(
-                            onpress: () => controller.login(context),
-                            text: 'LOG IN',
-                          );
-                        }),
+                        AuthButton(
+                          onpress: () => controller.login(context),
+                          text: 'LOG IN',
+                        ),
                         const SizedBox(
                           height: 10,
                         ),

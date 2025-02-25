@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  GlobalKey formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   bool isVisibilty = false;
 
@@ -21,7 +21,7 @@ class LoginController extends GetxController {
   }
 
   Future<LoginModel?> login(BuildContext context) async {
-    // if (!(formKey.currentState as FormState).validate()) return null;
+    if (!(formKey.currentState as FormState).validate()) return null;
     isLoading.value = true;
     try {
       final response = await LoginService().login(
@@ -31,14 +31,11 @@ class LoginController extends GetxController {
 
       isLoading.value = false;
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const OtpView()),
-      );
+      Get.to(() => const OtpView());
 
       return LoginModel.fromJson(response['data']);
     } on AppException catch (e) {
-      //  Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', e.toString());
       isLoading.value = false;
 
       return null;

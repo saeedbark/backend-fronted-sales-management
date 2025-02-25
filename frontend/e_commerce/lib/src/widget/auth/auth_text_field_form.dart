@@ -1,26 +1,29 @@
+import 'package:e_commerce/src/widget/validation.dart';
 import 'package:flutter/material.dart';
 
-class authTextFromField extends StatelessWidget {
+class AuthTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
   final String text;
-  final Widget prefixIcon;
-  final Widget suffixIcon;
-  final Function validator;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
   final Color cursorColor;
-  final Color fillColor;
+  final Color? fillColor;
   final TextInputType type;
 
-  const authTextFromField(
-      {required this.controller,
-      required this.obscureText,
-      required this.text,
-      required this.prefixIcon,
-      required this.validator,
-      required this.cursorColor,
-      required this.type,
-      required this.suffixIcon,
-      required this.fillColor});
+  const AuthTextFormField({
+    required this.controller,
+    this.obscureText = false,
+    required this.text,
+    this.prefixIcon,
+    this.suffixIcon,
+    required this.validator,
+    required this.cursorColor,
+    required this.type,
+    this.fillColor,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,35 +36,35 @@ class authTextFromField extends StatelessWidget {
         hintText: text,
         hintStyle: const TextStyle(
           color: Colors.grey,
-          fontSize: 22,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        fillColor: fillColor,
+        fillColor: fillColor ?? Colors.transparent,
         filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.deepOrange),
+        ),
         errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
         focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-            borderRadius: BorderRadius.circular(10)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
       ),
-      validator: (value) => (value),
+      validator: validator,
     );
   }
 }
