@@ -40,9 +40,10 @@ class LogOutWidget extends StatelessWidget {
             onConfirm: () {
               SharedPreferencesHelper.remove('token');
               SharedPreferencesHelper.remove('code');
-              Navigator.push(
+
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute( 
+                MaterialPageRoute(
                   builder: (context) => const LoginView(),
                 ),
               );

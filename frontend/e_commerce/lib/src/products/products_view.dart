@@ -42,7 +42,7 @@ class ProductsView extends StatelessWidget {
                     TextUtils(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      text: 'INSPIRATION',
+                      text: 'Products',
                       color: Colors.white,
                       underline: TextDecoration.none,
                     ),
