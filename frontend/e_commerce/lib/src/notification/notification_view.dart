@@ -16,7 +16,7 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<NotificationController>();
     final theme = Theme.of(context);
-      //  final screenHeight = MediaQuery.of(context).size.height;
+    //  final screenHeight = MediaQuery.of(context).size.height;
 
     
     return Scaffold(
@@ -31,7 +31,7 @@ class NotificationView extends StatelessWidget {
                     colors: [
                       theme.primaryColor,
                       theme.colorScheme.secondary,
-                    ],
+                    ], 
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),

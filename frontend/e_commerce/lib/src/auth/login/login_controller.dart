@@ -1,7 +1,7 @@
 import 'package:e_commerce/network/app_exceptions.dart';
+import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/src/auth/login/login_model.dart';
 import 'package:e_commerce/src/auth/login/login_service.dart';
-import 'package:e_commerce/src/auth/otp/otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +31,7 @@ class LoginController extends GetxController {
 
       isLoading.value = false;
 
-      Get.to(() => const OtpView());
+      Get.toNamed(AppRoute.otp);
 
       return LoginModel.fromJson(response['data']);
     } on AppException catch (e) {

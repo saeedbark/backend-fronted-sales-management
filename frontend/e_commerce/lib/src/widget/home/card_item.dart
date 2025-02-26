@@ -32,8 +32,8 @@ class CardItem extends StatelessWidget {
                 : GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
-                      childAspectRatio: 0.8,
-                      mainAxisSpacing: 9,
+                      childAspectRatio: 0.7,
+                      mainAxisSpacing: 10,
                       crossAxisSpacing: 6,
                       maxCrossAxisExtent: 300,
                     ),

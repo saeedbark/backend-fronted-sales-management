@@ -16,6 +16,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -26,7 +27,7 @@ class LoginView extends StatelessWidget {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 1.3,
+                  height: MediaQuery.of(context).size.height / 1.15,
                   child: Padding(
                     padding:
                         const EdgeInsets.only(left: 25, right: 25, top: 40),
@@ -51,9 +52,7 @@ class LoginView extends StatelessWidget {
                             )
                           ],
                         ),
-                        const SizedBox(
-                          height: 50,
-                        ),
+                        const SizedBox(height: 50),
                         AuthTextFormField(
                           controller: controller.emailController,
                           obscureText: false,
@@ -134,9 +133,6 @@ class LoginView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 30),
-                        const SizedBox(
-                          height: 50,
-                        ),
                         AuthButton(
                           onpress: () => controller.login(context),
                           text: 'LOG IN',

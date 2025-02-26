@@ -40,8 +40,7 @@ class LogOutWidget extends StatelessWidget {
             onConfirm: () {
               SharedPreferencesHelper.remove('token');
               SharedPreferencesHelper.remove('code');
-              SharedPreferencesHelper.remove('favoirte');
-              SharedPreferencesHelper.remove('cart');
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
