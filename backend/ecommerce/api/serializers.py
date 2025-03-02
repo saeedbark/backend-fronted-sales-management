@@ -122,3 +122,12 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = ['id', 'user', 'amount', 'payment_date', 'status']
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = ['payment_method']
+        extra_kwargs = {
+            'payment_method': {'required': True}
+        }

@@ -83,6 +83,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
+FLASK_SERVICE_URL = 'http://10.0.38.172:5000'
+FLASK_SECRET_KEY = '42721553'
+
 
 TEMPLATES = [
     {

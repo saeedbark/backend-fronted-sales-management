@@ -12,6 +12,9 @@ from django.utils.timezone import now
 
 from django.core.mail import send_mail
 from django.conf import settings
+import requests
+from django.conf import settings
+
 
 
 
@@ -426,3 +429,96 @@ class PaymentView(APIView):
 
         return Response({"status": True, "message": "Payment completed", "data": PaymentSerializer(payment).data})
     
+
+
+class PaymentView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        """
+        Handle payment requests by communicating with the Flask payment service.
+        """
+        # Step 1: Get the user's active cart
+        try:
+            cart = Cart.objects.get(user=request.user, is_active=True)
+        except Cart.DoesNotExist:
+            return Response(
+                {
+                    "status": False,
+                    "message": "No active cart found. Please add items to your cart first."
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Step 2: Validate payment data
+        serializer = PaymentSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                {
+                    "status": False,
+                    "message": "Invalid payment data",
+                    "errors": serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Step 3: Prepare data for Flask payment service
+        payment_data = {
+            'user_id': request.user.id,
+            'amount': cart.total_amount,
+            'currency': 'MUR',
+            'payment_method': serializer.validated_data['payment_method'],
+            'cart_id': cart.id
+        }
+
+        # Step 4: Call Flask payment service
+        try:
+            response = requests.post(
+                f'{settings.FLASK_SERVICE_URL}/process-payment',
+                json=payment_data,
+                headers={'Authorization': f'Bearer {settings.FLASK_SERVICE_TOKEN}'},
+                timeout=10  # Timeout after 10 seconds
+            )
+            response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
+        except requests.exceptions.RequestException as e:
+            # Handle connection errors, timeouts, etc.
+            return Response(
+                {
+                    "status": False,
+                    "message": "Payment service is currently unavailable. Please try again later.",
+                    "details": str(e)
+                },
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+
+        # Step 5: Handle Flask payment response
+        payment_response = response.json()
+        if payment_response.get('status') != 'success':
+            return Response(
+                {
+                    "status": False,
+                    "message": "Payment failed",
+                    "data": payment_response
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Step 6: Save payment details in Django
+        Payment.objects.create(
+            user=request.user,
+            cart=cart,
+            amount=cart.total_amount,
+            payment_method=serializer.validated_data['payment_method'],
+            status=payment_response['status'],
+            transaction_id=payment_response['transaction_id']
+        )
+
+        # Step 7: Return success response
+        return Response(
+            {
+                "status": True,
+                "message": "Payment processed successfully",
+                "data": payment_response
+            },
+            status=status.HTTP_200_OK
+        )
